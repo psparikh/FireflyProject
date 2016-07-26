@@ -3,7 +3,7 @@ using System.Collections;
 public class TrainMove : MonoBehaviour
 {	
 	void Start(){
-		iTween.MoveBy(gameObject, iTween.Hash("x", 100, "easeType", "easeOutQuad", "time", 20, "delay", 20));
+		iTween.MoveBy(gameObject, iTween.Hash("z", -150, "easeType", "easeOutCubic", "time", 20, "delay", 0));
 	}
 }
 

@@ -358,7 +358,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     randomizeRotationDirection: 0
-    gravityModifier: -0
+    gravityModifier: 0
     maxNumParticles: 600
     rotation3D: 0
   ShapeModule:
@@ -386,7 +386,7 @@ ParticleSystem:
     serializedVersion: 2
     m_Type: 0
     rate:
-      scalar: 200
+      scalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:

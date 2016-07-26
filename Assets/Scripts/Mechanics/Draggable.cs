@@ -54,7 +54,6 @@ public class Draggable : MonoBehaviour{
         {
             if (!dragging)
             {
-                Debug.Log("Not dragging nor returning");
                 target.transform.position = originReference.position;
             }
         }

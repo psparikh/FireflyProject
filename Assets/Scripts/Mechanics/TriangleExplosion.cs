@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 public class TriangleExplosion : MonoBehaviour
 {
+
+    //physics layer
+    //remove shadows on traingles
+
     public IEnumerator SplitMesh(bool destroy)
     {
         if (GetComponent<MeshFilter>() == null || GetComponent<SkinnedMeshRenderer>() == null)

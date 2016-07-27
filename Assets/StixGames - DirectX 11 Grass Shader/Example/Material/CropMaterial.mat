@@ -183,7 +183,7 @@ Material:
       data:
         first:
           name: _EdgeLength
-        second: 13.4
+        second: 20.2
       data:
         first:
           name: _MaxTessellation
@@ -191,11 +191,11 @@ Material:
       data:
         first:
           name: _LODStart
-        second: 50
+        second: 59.3
       data:
         first:
           name: _LODEnd
-        second: 300
+        second: 298.8
       data:
         first:
           name: _LODMax
@@ -203,11 +203,11 @@ Material:
       data:
         first:
           name: _GrassFadeStart
-        second: -1.1
+        second: 23.9
       data:
         first:
           name: _GrassFadeEnd
-        second: 48.9
+        second: 29.47
       data:
         first:
           name: _Disorder

@@ -153,7 +153,7 @@ public class LightBeam : MonoBehaviour
     /// <returns></returns>
     private IEnumerator Beam()
     {
-        //target.GetComponent<LampController>().Activate();
+        target.transform.GetComponent<LampController>().Activate( true );
         yield return null;
     }
 

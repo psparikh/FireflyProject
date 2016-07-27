@@ -6,6 +6,7 @@ namespace UnityStandardAssets.Effects
 {
     public class ExtinguishableParticleSystem : MonoBehaviour
     {
+
         public float multiplier = 1;
 
         private ParticleSystem[] m_Systems;
@@ -16,13 +17,12 @@ namespace UnityStandardAssets.Effects
             m_Systems = GetComponentsInChildren<ParticleSystem>();
         }
 
-
-        public void Extinguish()
+        public void Extinguish( bool active )
         {
             foreach (var system in m_Systems)
             {
                 var emission = system.emission;
-                emission.enabled = false;
+                emission.enabled = !active;
             }
         }
     }

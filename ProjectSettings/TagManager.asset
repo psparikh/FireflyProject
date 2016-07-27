@@ -6,6 +6,8 @@ TagManager:
   tags:
   - sling
   - item
+  - bullet
+  - targetSpawner
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - 
   - slingshot
   - touch
-  - 
+  - bullet
   - 
   - 
   - 

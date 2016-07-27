@@ -16,7 +16,7 @@ public class ChangeFirefly : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         device = SteamVR_Controller.Input((int)trackedObject.index);
-        if (device.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
+       /* if (device.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
         {
             //device.TriggerHapticPulse(pulsePower);
             ParticleSystem.InheritVelocityModule inheritVel = firefly.inheritVelocity;
@@ -28,7 +28,7 @@ public class ChangeFirefly : MonoBehaviour {
             ParticleSystem.InheritVelocityModule inheritVel = firefly.inheritVelocity;
             inheritVel.mode = ParticleSystemInheritVelocityMode.Initial;
 
-        }
+        }*/
         if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
         {
             firefly.Play();
@@ -42,7 +42,7 @@ public class ChangeFirefly : MonoBehaviour {
             firefly.Play();
             ParticleSystem.EmissionModule emissionMod = firefly.emission;
             ParticleSystem.MinMaxCurve minMax = new ParticleSystem.MinMaxCurve();
-            minMax.constantMax = 400;
+            minMax.constantMax = 1000;
             emissionMod.rate = minMax;
 
         }

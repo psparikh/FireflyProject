@@ -11,6 +11,8 @@ public class iTweenMovement : iTweenEditor
 
     public Vector3[] pathArray;
 
+    public bool pathOrient = false;
+
     [System.Serializable]
     public class OnStart : UnityEvent { };
     public OnStart onStart;
@@ -41,6 +43,11 @@ public class iTweenMovement : iTweenEditor
 
         ht.Add("looptype", this.loopType);
         ht.Add("easetype", this.easeType);
+
+        ht.Add("orienttopath", pathOrient);
+
+        if( pathOrient )
+            ht.Add("lookahead", 0.001f );
 
         ht.Add("onstart", (Action<object>)(newVal => {
             if (onStart != null)

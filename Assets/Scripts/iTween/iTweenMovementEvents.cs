@@ -80,4 +80,9 @@ public class iTweenMovementEvents : MonoBehaviour
         return hasFinished;
     }
 
+    public bool HasInitialized()
+    {
+        return initialized;
+    }
+
 }

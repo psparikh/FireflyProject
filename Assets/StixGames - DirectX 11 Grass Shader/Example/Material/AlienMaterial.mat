@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -11,6 +11,7 @@ Material:
   m_ShaderKeywords: GRASS_WIDTH_SMOOTHING SIMPLE_GRASS
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
+  stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -31,6 +32,13 @@ Material:
       data:
         first:
           name: _DetailNormalMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MetallicGlossMap
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -66,13 +74,6 @@ Material:
       data:
         first:
           name: _DetailAlbedoMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _MetallicGlossMap
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -129,10 +130,6 @@ Material:
     m_Floats:
       data:
         first:
-          name: _Cutoff
-        second: .5
-      data:
-        first:
           name: _SrcBlend
         second: 1
       data:
@@ -141,8 +138,8 @@ Material:
         second: 0
       data:
         first:
-          name: _Parallax
-        second: .0199999996
+          name: _Cutoff
+        second: 0.5
       data:
         first:
           name: _ZWrite
@@ -150,11 +147,19 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: .5
+        second: 0.5
+      data:
+        first:
+          name: _Metallic
+        second: 0
       data:
         first:
           name: _BumpScale
         second: 1
+      data:
+        first:
+          name: _Parallax
+        second: 0.02
       data:
         first:
           name: _OcclusionStrength
@@ -170,10 +175,6 @@ Material:
       data:
         first:
           name: _Mode
-        second: 0
-      data:
-        first:
-          name: _Metallic
         second: 0
       data:
         first:
@@ -214,15 +215,15 @@ Material:
       data:
         first:
           name: _Smoothness00
-        second: .629000008
+        second: 0.629
       data:
         first:
           name: _Softness00
-        second: .108000003
+        second: 0.108
       data:
         first:
           name: _Width00
-        second: .119999997
+        second: 0.12
       data:
         first:
           name: _MinHeight00
@@ -234,19 +235,19 @@ Material:
       data:
         first:
           name: _Smoothness01
-        second: .5
+        second: 0.5
       data:
         first:
           name: _Softness01
-        second: .5
+        second: 0.5
       data:
         first:
           name: _Width01
-        second: .100000001
+        second: 0.1
       data:
         first:
           name: _MinHeight01
-        second: .200000003
+        second: 0.2
       data:
         first:
           name: _MaxHeight01
@@ -254,19 +255,19 @@ Material:
       data:
         first:
           name: _Smoothness02
-        second: .5
+        second: 0.5
       data:
         first:
           name: _Softness02
-        second: .5
+        second: 0.5
       data:
         first:
           name: _Width02
-        second: .100000001
+        second: 0.1
       data:
         first:
           name: _MinHeight02
-        second: .200000003
+        second: 0.2
       data:
         first:
           name: _MaxHeight02
@@ -274,19 +275,19 @@ Material:
       data:
         first:
           name: _Smoothness03
-        second: .5
+        second: 0.5
       data:
         first:
           name: _Softness03
-        second: .5
+        second: 0.5
       data:
         first:
           name: _Width03
-        second: .100000001
+        second: 0.1
       data:
         first:
           name: _MinHeight03
-        second: .200000003
+        second: 0.2
       data:
         first:
           name: _MaxHeight03
@@ -303,7 +304,7 @@ Material:
       data:
         first:
           name: _GrassBottomColor
-        second: {r: .433823526, g: .433823526, b: .433823526, a: 1}
+        second: {r: 0.43382353, g: 0.43382353, b: 0.43382353, a: 1}
       data:
         first:
           name: _BurnColor
@@ -315,52 +316,52 @@ Material:
       data:
         first:
           name: _WindParams
-        second: {r: 10, g: .0299999993, b: 5, a: .100000001}
+        second: {r: 10, g: 0.03, b: 5, a: 0.1}
       data:
         first:
           name: _Color00
-        second: {r: 0, g: .110802412, b: .845595002, a: 1}
+        second: {r: 0, g: 0.11080241, b: 0.845595, a: 1}
       data:
         first:
           name: _SecColor00
-        second: {r: .242647052, g: .905984163, b: 1, a: 1}
+        second: {r: 0.24264705, g: 0.90598416, b: 1, a: 1}
       data:
         first:
           name: _SpecColor00
-        second: {r: .42225346, g: .808823526, b: .584879458, a: 1}
+        second: {r: 0.42225346, g: 0.8088235, b: 0.58487946, a: 1}
       data:
         first:
           name: _Color01
-        second: {r: .5, g: .699999988, b: .300000012, a: 1}
+        second: {r: 0.5, g: 0.7, b: 0.3, a: 1}
       data:
         first:
           name: _SecColor01
-        second: {r: .200000003, g: .5, b: .150000006, a: 1}
+        second: {r: 0.2, g: 0.5, b: 0.15, a: 1}
       data:
         first:
           name: _SpecColor01
-        second: {r: .200000003, g: .200000003, b: .200000003, a: 1}
+        second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
       data:
         first:
           name: _Color02
-        second: {r: .5, g: .699999988, b: .300000012, a: 1}
+        second: {r: 0.5, g: 0.7, b: 0.3, a: 1}
       data:
         first:
           name: _SecColor02
-        second: {r: .200000003, g: .5, b: .150000006, a: 1}
+        second: {r: 0.2, g: 0.5, b: 0.15, a: 1}
       data:
         first:
           name: _SpecColor02
-        second: {r: .200000003, g: .200000003, b: .200000003, a: 1}
+        second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
       data:
         first:
           name: _Color03
-        second: {r: .5, g: .699999988, b: .300000012, a: 1}
+        second: {r: 0.5, g: 0.7, b: 0.3, a: 1}
       data:
         first:
           name: _SecColor03
-        second: {r: .200000003, g: .5, b: .150000006, a: 1}
+        second: {r: 0.2, g: 0.5, b: 0.15, a: 1}
       data:
         first:
           name: _SpecColor03
-        second: {r: .200000003, g: .200000003, b: .200000003, a: 1}
+        second: {r: 0.2, g: 0.2, b: 0.2, a: 1}

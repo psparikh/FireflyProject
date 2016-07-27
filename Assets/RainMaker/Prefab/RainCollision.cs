@@ -23,7 +23,7 @@ namespace DigitalRuby.RainMaker
 
         private void Emit(ParticleSystem p, ref Vector3 pos)
         {
-            int count = UnityEngine.Random.Range(2, 5);
+            int count = UnityEngine.Random.Range(2, 10);
             while (count != 0)
             {
                 float yVelocity = UnityEngine.Random.Range(1.0f, 3.0f);

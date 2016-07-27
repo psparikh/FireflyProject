@@ -36,11 +36,13 @@ public class RainStop : MonoBehaviour {
 
             if (velLife.y.constantMax > -1)
             {
+                Debug.Log("YES");
                 explosionSystem.gravityModifier = 0; //FIX
 
             }
             else
             {
+                Debug.Log("NO");
                 explosionSystem.gravityModifier = 4;
 
             }
@@ -59,7 +61,6 @@ public class RainStop : MonoBehaviour {
 
         if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
         {
-            Debug.Log("g");
             ParticleSystem.VelocityOverLifetimeModule velLife = system.velocityOverLifetime;
             ParticleSystem.MinMaxCurve minMax = new ParticleSystem.MinMaxCurve();
             minMax = velLife.y;
@@ -68,8 +69,8 @@ public class RainStop : MonoBehaviour {
             minMax.constantMax = -55;
             Debug.Log(minMax.constantMax);
             velLife.y = minMax;
-            
 
+            explosionSystem.gravityModifier = 4;
         }
 
     }

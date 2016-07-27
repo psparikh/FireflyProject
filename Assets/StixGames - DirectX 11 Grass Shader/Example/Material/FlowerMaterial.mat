@@ -183,7 +183,7 @@ Material:
       data:
         first:
           name: _MaxTessellation
-        second: 3
+        second: 4
       data:
         first:
           name: _LODStart

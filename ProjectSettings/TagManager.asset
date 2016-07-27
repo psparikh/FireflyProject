@@ -7,7 +7,7 @@ TagManager:
   - sling
   - item
   - bullet
-  - targetSpawner
+  - lamp
   layers:
   - Default
   - TransparentFX

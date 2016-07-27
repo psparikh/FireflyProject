@@ -7,10 +7,12 @@ public class iTweenMovementEvents : MonoBehaviour
     public iTweenMovement[] movements;
     private int currentMovement = 0;
 
+    private bool initialized = false;
+
     void Start()
     {
         currentMovement = 0;
-        movements[currentMovement].iTweenPlay();
+        initialized = false;
     }
 
     public void OnStartEvent()
@@ -25,6 +27,41 @@ public class iTweenMovementEvents : MonoBehaviour
             currentMovement++;
             movements[currentMovement].iTweenPlay();
         }
+        else
+        {
+            CallFinalEvent();
+        }
+    }
+
+    private bool MovementsAreUpdated()
+    {
+        bool completeMovements = true;
+        foreach (iTweenMovement tweenMove in GetComponentsInChildren<iTweenMovement>())
+        {
+            if (!tweenMove.IsPathInitialized())
+            {
+                completeMovements = false;
+            }
+        }
+        return completeMovements;
+    }
+
+    void Update()
+    {
+        if( MovementsAreUpdated() && !initialized)
+        {
+            movements[currentMovement].iTweenPlay();
+            initialized = true;
+        }
+    }
+
+    private void CallFinalEvent()
+    {
+        iTweenMovement finalMovement = movements[currentMovement];
+        GameObject target = finalMovement.target;
+        Transform finalWaypoint = finalMovement.waypoints[finalMovement.waypoints.Length - 1];
+
+        target.transform.rotation = finalWaypoint.rotation;
     }
 
 }

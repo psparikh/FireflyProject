@@ -1,15 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.Events;
 using System;
 using UnityEngine.UI;
 
+[ExecuteInEditMode]
 public class iTweenMovement : iTweenEditor
 {
 
     public GameObject target;
+    public Transform[] waypoints;
 
-    public Vector3[] pathArray;
+    private Vector3[] pathArray;
+    private bool pathInitilaized = false;
+
+    public bool pathOrient = false;
 
     [System.Serializable]
     public class OnStart : UnityEvent { };
@@ -42,6 +48,11 @@ public class iTweenMovement : iTweenEditor
         ht.Add("looptype", this.loopType);
         ht.Add("easetype", this.easeType);
 
+        ht.Add("orienttopath", pathOrient);
+
+        if( pathOrient )
+            ht.Add("lookahead", 0.001f );
+
         ht.Add("onstart", (Action<object>)(newVal => {
             if (onStart != null)
             {
@@ -70,6 +81,25 @@ public class iTweenMovement : iTweenEditor
     {
         //Visual. Not used in movement
         iTween.DrawPath( this.pathArray );
+    }
+
+    void Update()
+    {
+        if( !pathInitilaized)
+        {
+            this.pathArray = new Vector3[waypoints.Length];
+            pathInitilaized = true;
+        }
+
+        for( int i=0; i < waypoints.Length; i++)
+        {
+            this.pathArray[i] = waypoints[i].position;
+        }
+    }
+
+    public bool IsPathInitialized()
+    {
+        return pathInitilaized;
     }
 
 }

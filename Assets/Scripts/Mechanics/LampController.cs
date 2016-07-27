@@ -3,8 +3,12 @@ using System.Collections;
 
 public class LampController : MonoBehaviour {
 
+    public bool hasActivated;
+    public bool canToggle = true;
+
 	// Use this for initialization
 	void Start () {
+        hasActivated = false;
         Activate( false );
 	}
 	
@@ -15,7 +19,11 @@ public class LampController : MonoBehaviour {
 
     public void Activate( bool toggle )
     {
-        GetComponent<MeshRenderer>().enabled = !toggle;
-        GetComponentInChildren<Light>().enabled = toggle;
+        if (canToggle)
+        {
+            GetComponent<MeshRenderer>().enabled = !toggle;
+            GetComponentInChildren<Light>().enabled = toggle;
+            hasActivated = toggle;
+        }
     }
 }

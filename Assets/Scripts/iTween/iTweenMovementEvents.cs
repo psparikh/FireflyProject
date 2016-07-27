@@ -8,11 +8,13 @@ public class iTweenMovementEvents : MonoBehaviour
     private int currentMovement = 0;
 
     private bool initialized = false;
+    private bool hasFinished = false;
 
     void Start()
     {
         currentMovement = 0;
         initialized = false;
+        hasFinished = false;
     }
 
     public void OnStartEvent()
@@ -50,7 +52,6 @@ public class iTweenMovementEvents : MonoBehaviour
     {
         if( MovementsAreUpdated() && !initialized)
         {
-            movements[currentMovement].iTweenPlay();
             initialized = true;
         }
     }
@@ -62,6 +63,21 @@ public class iTweenMovementEvents : MonoBehaviour
         Transform finalWaypoint = finalMovement.waypoints[finalMovement.waypoints.Length - 1];
 
         target.transform.rotation = finalWaypoint.rotation;
+
+        hasFinished = true;
+    }
+
+    public void Begin()
+    {
+        if ( initialized )
+        {
+            movements[currentMovement].iTweenPlay();
+        }
+    }
+
+    public bool HasFinished()
+    {
+        return hasFinished;
     }
 
 }

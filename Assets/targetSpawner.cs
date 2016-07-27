@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Bullet : MonoBehaviour {
+public class targetSpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -12,9 +12,4 @@ public class Bullet : MonoBehaviour {
 	void Update () {
 	
 	}
-
-    void OnCollisionEnter( Collision col )
-    {
-            Destroy(gameObject);
-    }
 }

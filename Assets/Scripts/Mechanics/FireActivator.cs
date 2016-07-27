@@ -12,17 +12,6 @@ public class FireActivator : MonoBehaviour {
         toggleFire = false;
         GetComponent<ExtinguishableParticleSystem>().Extinguish(!toggleFire);
     }
-	
-	// Update is called once per frame
-	void Update () {
-        if ( Input.GetKeyDown(KeyCode.F) )
-        {
-            toggleFire = !toggleFire;
-            Debug.Log(toggleFire);
-
-            GetComponent<ExtinguishableParticleSystem>().Extinguish(!toggleFire);
-        }
-    }
 
     public void OnTriggerEnter( Collider col)
     {

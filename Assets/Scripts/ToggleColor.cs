@@ -16,9 +16,9 @@ public class ToggleColor : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void OnTriggerEnter ( Collider col ) {
+	void OnCollisionEnter ( Collision col ) {
 	
-        if( col.CompareTag("bullet") )
+        if( col.collider.CompareTag("bullet") )
         {
             Increment();
         }

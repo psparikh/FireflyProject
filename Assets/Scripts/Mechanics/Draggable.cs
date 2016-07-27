@@ -5,6 +5,10 @@ public class Draggable : MonoBehaviour{
 
 
     public GameObject target;
+
+    public GameObject bullet;
+    public GameObject bulletSpawn;
+
     public Transform originReference;
     private Transform defaultTargetParent;
 
@@ -13,6 +17,9 @@ public class Draggable : MonoBehaviour{
 
     private Vector3 origin;
 	public float forceConstant = 200;
+
+    public float bulletForce = 2000;
+
 	private bool returning = false;
 	public float precision = 0.01f;
 
@@ -82,7 +89,19 @@ public class Draggable : MonoBehaviour{
 
                 returning = true;
 
+                FireBullet();
+
             }
         }
     }
+
+    public void FireBullet()
+    {
+        Vector3 forceApplied = bulletForce * (origin - target.transform.position);
+        GameObject newBullet = (GameObject) Instantiate(bullet, bulletSpawn.transform.position, Quaternion.identity);
+        newBullet.GetComponent<Rigidbody>().AddForce(forceApplied);
+
+    }
+
+
 }

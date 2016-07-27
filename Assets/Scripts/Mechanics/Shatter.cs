@@ -4,13 +4,9 @@ using System.Collections;
 public class Shatter : MonoBehaviour
 {
 
-    void Start()
+    void OnCollisionEnter(Collision col)
     {
-        //gameObject.GetComponent<Rigidbody>().AddForce(0, 0, -200);
-    }
-    void OnTriggerEnter(Collider col)
-    {
-        if (col.tag == "bullet")
+        if (col.collider.tag == "bullet")
         {
             gameObject.AddComponent<TriangleExplosion>();
             StartCoroutine(gameObject.GetComponent<TriangleExplosion>().SplitMesh(true));

@@ -1,4 +1,6 @@
-﻿#ifndef GRASS_VERTEX
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+#ifndef GRASS_VERTEX
 #define GRASS_VERTEX
 
 appdata vert(appdata v)
@@ -7,7 +9,7 @@ appdata vert(appdata v)
 		v.objectSpacePos = v.vertex.xyz;
 	#endif
 
-	v.vertex = mul(_Object2World, v.vertex);
+	v.vertex = mul(unity_ObjectToWorld, v.vertex);
 	v.uv = TRANSFORM_TEX(v.uv, _Density);
 
 	//v.color doesn't have to be changed.

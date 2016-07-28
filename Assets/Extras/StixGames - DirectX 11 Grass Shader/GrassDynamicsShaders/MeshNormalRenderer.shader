@@ -1,4 +1,6 @@
-﻿Shader "Stix Games/Grass Dynamics/Mesh Normal Renderer"
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+Shader "Stix Games/Grass Dynamics/Mesh Normal Renderer"
 {
 	Properties
 	{
@@ -54,7 +56,7 @@
 			{
 				v2f o;
 				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
-				o.pos = mul(_Object2World, v.vertex);
+				o.pos = mul(unity_ObjectToWorld, v.vertex);
 				o.normal = UnityObjectToWorldNormal(v.normal);
 				o.uv = TRANSFORM_TEX(v.uv, _BurnMap);
 				return o;

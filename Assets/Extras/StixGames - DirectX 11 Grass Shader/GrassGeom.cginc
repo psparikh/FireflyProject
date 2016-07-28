@@ -1,4 +1,6 @@
-﻿#ifndef GRASS_GEOM
+﻿// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+
+#ifndef GRASS_GEOM
 #define GRASS_GEOM
 
 inline FS_INPUT geomToFrag(GS_OUTPUT v)
@@ -6,7 +8,7 @@ inline FS_INPUT geomToFrag(GS_OUTPUT v)
 	float3 worldPos = v.vertex.xyz;
 
 	//This is necessary for shadow calculation
-	v.vertex = mul(_World2Object, v.vertex);
+	v.vertex = mul(unity_WorldToObject, v.vertex);
 
 	#ifdef GRASS_CURVED_WORLD
 		V_CW_TransformPoint(v.vertex);

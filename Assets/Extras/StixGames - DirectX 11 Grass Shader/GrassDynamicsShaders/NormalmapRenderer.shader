@@ -1,4 +1,7 @@
-﻿Shader "Stix Games/Grass Dynamics/Normalmap Renderer"
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+
+Shader "Stix Games/Grass Dynamics/Normalmap Renderer"
 {
 	Properties
 	{
@@ -67,11 +70,11 @@
 				v2f o;
 				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
 
-				o.pos = mul(_Object2World, v.vertex);
+				o.pos = mul(unity_ObjectToWorld, v.vertex);
 
 				//Multiply with inverse transposed matrix
-				o.normal =  mul(float4(v.normal,0.0f), _World2Object).xyz;
-				o.tangent = mul(_Object2World, float4(v.tangent.xyz, 0.0));
+				o.normal =  mul(float4(v.normal,0.0f), unity_WorldToObject).xyz;
+				o.tangent = mul(unity_ObjectToWorld, float4(v.tangent.xyz, 0.0));
 				o.bitangent = cross(o.normal, o.tangent) * v.tangent.w;
 
 				o.uv = TRANSFORM_TEX(v.uv, _Normal);

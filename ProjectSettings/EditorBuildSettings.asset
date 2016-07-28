@@ -4,4 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MVP/MVPScene 1.unity
+  - enabled: 1
+    path: Assets/Scenes/MVP/MVPScene 2.unity
+  - enabled: 1
+    path: Assets/Scenes/MVP/MVPScene 3.unity
+  - enabled: 1
+    path: Assets/Scenes/MVP/MVPScene 4.unity
+  - enabled: 1
+    path: Assets/Scenes/MVP/MVPScene 5.unity

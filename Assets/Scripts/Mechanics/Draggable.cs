@@ -74,7 +74,7 @@ public class Draggable : MonoBehaviour{
             //Grab Object
             if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger) || device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
             {
-                dragging = true;
+                    dragging = true;
                 col.gameObject.GetComponent<Rigidbody>().isKinematic = true;
                 col.gameObject.transform.SetParent(gameObject.transform);
 

@@ -12,7 +12,7 @@ public class Breakable: MonoBehaviour
     public float radius;
     public float power;
 
-    private float upwardsModifier = 3.0F;
+    public float upwardsModifier = 3.0F;
 
 #if UNITY_EDITOR
     public bool breakCheck;

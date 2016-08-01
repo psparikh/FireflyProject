@@ -1,0 +1,61 @@
+uSky Fog
+===============
+
+Usage:
+--------------
+Option 1:
+1, Apply "uSky Fog" script to uSkyManager.
+2, Apply "uSky Fog Camera" script to Main Camera.
+(Scripts locates at: Menu > Component / uSky)
+Note: Modified "uSkyBox_HorzionOffset" skybox material should be apply to uSkyManager as well.
+
+
+Option 2:
+1, Drag the "uSkyManager_Fog" to the hierarchy window.
+2, Apply "uSky Fog Camera" script to MainCamera.
+
+
+Attributes:
+--------------
+Fog Mode
+--------------	
+The way in which the fogging accumulates with distance from the camera. The options are Linear, Exponential and Exponential Squared (these are in increasing order of fog accumulation with distance).
+
+
+useRadialDistance
+--------------------
+Distance fog is based on radial distance from camera when checked.
+
+
+Start
+--------------
+(Only available for Linear fog mode) The distance from camera at which the fog starts.
+
+
+End
+--------------
+(Only available for Linear fog mode) The distance from camera at which the fog completely obscures scene objects.
+
+
+
+Density
+--------------
+Distance fog amount
+
+
+ColorDecay
+--------------
+Shifting the scattering color between horizon and zenith.
+
+
+
+Scattering
+--------------
+How much light will scattering through the occlusion. It will be useful to lower this value when the sun is behind the mountain.
+
+
+Horizon Offset
+---------------
+Simulate the viewer or camera height level offset. Create a curve shape effect of the horizon that can be match the far away ground or ocean edge.
+
+Note: This option is only for a modified material call "uSkyBox_HorzionOffset". 

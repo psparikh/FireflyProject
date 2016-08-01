@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 1e0319a53383e4739991ddbfaabbfb8c
+timeCreated: 1449456396
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - SkyboxMaterial: {fileID: 2100000, guid: bdee91fafbe003347821ce930979d79a, type: 2}
+  - m_PrecomputeShader: {fileID: 4800000, guid: 2a1b568fb9fa24acdb5e3d4a27ad4ddb,
+      type: 3}
+  - m_uStarShader: {fileID: 4800000, guid: 09af57d917be24de7ad38b15e863ce4c, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

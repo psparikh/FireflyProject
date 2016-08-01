@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: fef177db74ca4457ea2e62abf44ef0f5
+timeCreated: 1449007811
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - m_atmosphericDeferredShader: {fileID: 4800000, guid: 5d3876d55339b424fb521325ff6381ef,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

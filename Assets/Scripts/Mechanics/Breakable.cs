@@ -47,8 +47,10 @@ public class Breakable: MonoBehaviour
     {
         if (col.collider.tag == "bullet")
         {
+            Debug.Log("true");
+
             Vector3 contactPoint = col.contacts[0].point;
-            Break(contactPoint);
+            StartCoroutine( Break(contactPoint) );
         }
     }
 

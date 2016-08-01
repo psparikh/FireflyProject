@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 516fcc53ef335864fb0e34ae3de1b01c
+timeCreated: 1430739541
+licenseType: Store
+ShaderImporter:
+  defaultTextures:
+  - _Transmittance: {instanceID: 0}
+  - _Inscatter: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

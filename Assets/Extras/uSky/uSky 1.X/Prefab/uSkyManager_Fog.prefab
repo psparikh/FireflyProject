@@ -1,0 +1,269 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &148540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 422248}
+  - 114: {fileID: 11495558}
+  - 114: {fileID: 11413652}
+  - 114: {fileID: 11494900}
+  - 114: {fileID: 11483424}
+  m_Layer: 0
+  m_Name: uSkyManager_Fog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &153726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 463580}
+  - 108: {fileID: 10869818}
+  m_Layer: 0
+  m_Name: Moon light
+  m_TagString: Untagged
+  m_Icon: {fileID: 2800000, guid: bf1145510dbae4c93ab1fcaabc39b0d7, type: 3}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &422248
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148540}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 463580}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!4 &463580
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153726}
+  m_LocalRotation: {x: 0.9238795, y: -0.00000008817204, z: -0.00000008817204, w: 0.38268346}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 422248}
+  m_RootOrder: 0
+--- !u!108 &10869818
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153726}
+  m_Enabled: 0
+  serializedVersion: 7
+  m_Type: 1
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Intensity: 0
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!114 &11413652
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c44f9e1d2b7494c2994e135c65ad3c47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cloudLayer: 12
+  CloudMaterial: {fileID: 2100000, guid: cb8895afd9d6a40bbb8488ebbb8d40fd, type: 2}
+--- !u!114 &11483424
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62cc290fc1f284b8bbbefd2528f9a342, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fogMode: 2
+  useRadialDistance: 1
+  Density: 0.001
+  ColorDecay: 0.2
+  Scattering: 1
+  HorizonOffset: 0
+  StartDistance: 0
+  EndDistance: 300
+  FogMaterial: {fileID: 2100000, guid: 72b6a201f2527431596e87a59dfa7c2b, type: 2}
+--- !u!114 &11494900
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c62c070b6bab4a47bf045e4723f6d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkyUpdate: 1
+  Timeline: 17
+  SunDirection: 0
+  NorthPoleOffset: 0
+  Exposure: 1
+  RayleighScattering: 1
+  MieScattering: 1
+  SunAnisotropyFactor: 0.76
+  SunSize: 1
+  Wavelengths: {x: 680, y: 550, z: 440}
+  SkyTint:
+    r: 0.5
+    g: 0.5
+    b: 0.5
+    a: 1
+  m_GroundColor:
+    r: 0.369
+    g: 0.349
+    b: 0.341
+    a: 1
+  SunLight: {fileID: 0}
+  NightSky: 2
+  NightZenithColor:
+    key0: {}
+    key1: {}
+    key2: {}
+    key3: {}
+    key4: {}
+    key5: {}
+    key6: {}
+    key7: {}
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 2
+  NightHorizonColor:
+    r: 0.43
+    g: 0.47
+    b: 0.5
+    a: 1
+  StarIntensity: 1
+  OuterSpaceIntensity: 0.25
+  MoonInnerCorona:
+    r: 1
+    g: 1
+    b: 1
+    a: 0.5
+  MoonOuterCorona:
+    r: 0.25
+    g: 0.39
+    b: 0.5
+    a: 0.5
+  MoonSize: 0.2
+  MoonPositionOffset: 0
+  MoonLight: {fileID: 153726}
+  SkyboxMaterial: {fileID: 2100000, guid: b07c05b51547e42cfa2d02756f3785dc, type: 2}
+  _AutoApplySkybox: 1
+  LinearSpace: 1
+  SkyboxHDR: 0
+  _starsMesh: {fileID: 0}
+--- !u!114 &11495558
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8868ec6b743a240bbbceda788a96532a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SunIntensity: 1
+  LightColor:
+    key0: {}
+    key1: {}
+    key2: {}
+    key3: {}
+    key4: {}
+    key5: {}
+    key6: {}
+    key7: {}
+    m_NumColorKeys: 7
+    m_NumAlphaKeys: 2
+  MoonIntensity: 0.4
+  Ambient:
+    SkyColor:
+      key0: {}
+      key1: {}
+      key2: {}
+      key3: {}
+      key4: {}
+      key5: {}
+      key6: {}
+      key7: {}
+      m_NumColorKeys: 6
+      m_NumAlphaKeys: 2
+    EquatorColor:
+      key0: {}
+      key1: {}
+      key2: {}
+      key3: {}
+      key4: {}
+      key5: {}
+      key6: {}
+      key7: {}
+      m_NumColorKeys: 6
+      m_NumAlphaKeys: 2
+    GroundColor:
+      key0: {}
+      key1: {}
+      key2: {}
+      key3: {}
+      key4: {}
+      key5: {}
+      key6: {}
+      key7: {}
+      m_NumColorKeys: 4
+      m_NumAlphaKeys: 2
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 148540}
+  m_IsPrefabParent: 1

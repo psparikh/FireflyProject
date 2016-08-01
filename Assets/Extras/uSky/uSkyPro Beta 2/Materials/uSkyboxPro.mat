@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: uSkyboxPro
+  m_Shader: {fileID: 4800000, guid: 516fcc53ef335864fb0e34ae3de1b01c, type: 3}
+  m_ShaderKeywords: USKY_ENABLE_OCEAN
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: 1000
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MoonSampler
+        second:
+          m_Texture: {fileID: 2800000, guid: 46a7e5544b82b44dc883abb80119b3dc, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _OuterSpaceCube
+        second:
+          m_Texture: {fileID: 8900000, guid: f7900d9b4e7fc49798764350259a7e84, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Transmittance
+        second:
+          m_Texture: {fileID: 8400000, guid: 4138ab9915c5441c09531c811e15b9de, type: 2}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Inscatter
+        second:
+          m_Texture: {fileID: 8400000, guid: 8b36455170686440e83251867b37680e, type: 2}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: u_OuterSpaceCube
+        second:
+          m_Texture: {fileID: 8900000, guid: 90caedd366c2e4772a22509b73cfd4c3, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: u_MoonSampler
+        second:
+          m_Texture: {fileID: 2800000, guid: 46a7e5544b82b44dc883abb80119b3dc, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: u_Transmittance
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: u_Inscatter
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _turbidity
+        second: 1
+      data:
+        first:
+          name: RES_R
+        second: 2
+      data:
+        first:
+          name: _GroundOffset
+        second: 0
+      data:
+        first:
+          name: mieG
+        second: .75999999
+      data:
+        first:
+          name: SUN_INTENSITY
+        second: 100
+      data:
+        first:
+          name: _temp
+        second: 0
+      data:
+        first:
+          name: _AltitudeScale
+        second: 50
+      data:
+        first:
+          name: u_RES_R
+        second: 2
+      data:
+        first:
+          name: _uSkySkyboxOcean
+        second: 1
+    m_Colors:
+      data:
+        first:
+          name: SUN_DIR
+        second: {r: 3.18482563e-07, g: .211324781, b: .977416039, a: 0}
+      data:
+        first:
+          name: NightSkyZenithColShift
+        second: {r: 4, g: 0, b: 0, a: 0}

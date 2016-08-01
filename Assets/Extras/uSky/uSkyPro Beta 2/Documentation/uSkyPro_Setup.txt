@@ -1,0 +1,40 @@
+Here is the steps to set up the uSkyPro Atmospheric Scattering:
+
+Apply all the requires components to your scene:
+SKYBOX (Basic setup):
+======================================
+1) Apply the "uSkyPro" prefab in your scene. 
+(FOLDER: uSky/uSkyPro Beta/Prefabs)
+
+2) If your scene already has a the directional light call of "Directional Light". 
+uSkyPro should apply an "uSkySun" script automatically for you. 
+
+Other wise you may need to apply that "uSkySun" script to directional light manually. 
+(MENU: Component/uSkyPro)
+
+
+ATMOSPHERIC SCATTERING (ImageEffects):
+======================================
+3) Apply the "uSky Atmospheric Scattering" script to uSkyPro. 
+(MENU: Component/uSkyPro)
+
+4) "uSky Atmospheric Camera" script to your main camera.
+(MENU: Component/uSkyPro)
+
+5) Enable "HDR" toggle in main camera for better rendering result.
+  (Make sure Disable the "Anti-Aliasing" in QualitySettings for HDR rendering)
+
+
+PROJECT SETTINGS:
+=================
+- Disable the "Anti-Aliasing" in QualitySettings
+
+OPTIONAL :
+- Use "Linear" Color Space in PlaySettings for better PBS ligthing.
+
+
+That it is ! 
+Enjoy the uSkyPro!
+
+
+

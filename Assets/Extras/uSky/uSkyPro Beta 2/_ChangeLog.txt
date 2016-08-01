@@ -1,0 +1,84 @@
+uSky 1.1.9f3 Change Log
+=======================
+- Added uSkyPro Mobile Material (SM 2.0), this shader is roughly 4 times faster the original shader.
+Usage: Apply the "uSkyboxPro Mobile SM2" Material to "Skybox Material" field in uSkyPro.
+
+// LIMITATION OF MOBILE SHADER:
+//
+// Supports only Altitude Sample X1 
+// No calculation of camera position 
+// No Altitude Scale
+// Always at ground/sea level camera view from the sky
+// Always disabled skybox ocean effect
+// No earth shadow
+// No Moon Corona
+//
+// Ported Unity Photographic tonemapping formular for skybox :
+// - Sky color is more saturated then original color
+// - Slightly darker on Zenith (top of the sky)
+
+- Fixed the uSkyPro script error when apply to a new game object.
+
+- Renamed "Play Cycle" settings to "Day Night Cycle".
+
+
+
+HotFix (v1.1.9f2):
+==================
+Fixed when the scene applied with uSkyPro prefab, uSkyboxPro material is completely back and Undo is broken with uSkyPro.
+
+
+
+uSkyPro Beta 2 :
+=======================
+
+- Added new user-interface with foldable group settings. 
+  (New Interface is based on Unity "Cinematic Image Effects" PropertyDrawer script)
+
+- Added new script "uSkyTimeline" which combined the final "Timeline" control with "Play Cycle" in a single component.
+  Renamed the "North Pole Offset" parameter to "Sun Equator Offset". 
+  Now it allows user to change the Timeline even when time cycle is playing at runtime.
+
+- Rewritten the internal logic of the uSkyPro and more polished version. Now it is using unity event which acting like a states machine.
+  This new logic is fairly fast, responsive, more stable and running lower update behaviour on cpu.
+
+- Now most of the uSky components allow to work independently by it-self. User can decide which component to add or remove with GameObject.
+  Ideally this will be easier to intergrade uSkyPro with other third-party or custom weather asset.
+  For instance, user can add just only "uSkyTimeline" component to a GameObject and with "uSkySun" component in Directional light,
+  it will work as the time cycle and sun controller.
+  For more different components usage or combination that please check out the example scenes in new "Alternative Component Setup Demo" folder.
+
+- Added a new and improved version of "uSkyReflectionProbeUpdater" script for Reflection Probe update control .
+  This new script does not require to enable "Auto" toggle (in Lighting Window) anymore for Reflection Probe sequence update in both editor and runtime.
+
+- Added a new "uSkyFogGradient" script for unity built-in fog in Lighting window. It supports on both Forward and Deferred path.
+  (It provides the same function as "uFogGradient" script in previous uSky 1.x.)
+
+- Fixed the atmospheric occlusion with "out of the shadow range" issue with better solution. (Previous was using the Shadow Distance Scale solution).
+  Now the atmospheric occlusion effect will fade out nicely when camera is out side the realtime shadow distance range.
+  Also cleared occlusion shader compiler warning on d3d11.
+
+- Changed and simplified "uSky Atmospheric Scattering" script:
+  Removed "Horizion Fixup" parameter. Now hard coded "#define HORIZON_FIX" in the "Atmosphere.cginc" file which default is "ON".
+  Removed "Shadow Distance" parameter and "Use Shadow Distance Scale" toggle. Both of them are not needed anymore.
+  User can apply also an optional "ShadowDistanceHelper" script for alternative shadow distance control.
+
+- Reduced some shader Keywords.
+  Now uSkyPro Beta uses arround 5 keywords and they share some Keywords with uSky 1.x to keep the lower usage in total keywords if user installed both version in the project.
+  So total for both version of uSky use arround 7 keywords now.
+  Note: The total keywords amount may change in future version.
+
+- Changed the sun spot rendering in uSkyboxPro shader, the sun brightness will always higher than 1 which independent by HDR Mode setting.
+  It should get better result for bloom image effect.
+
+- Fixed and cleared the "uSkySun" and "uSkyMoon" editor warning when built the project.
+
+- Added "[ImageEffectAllowedInSceneView]" attribute in Atmospheric Scattering Image Effects which introduced in Unity 5.4 (Beta 5). 
+  This will copy the Image effect from the main camera onto the Scene View camera that allows to view the Image Effects directly inside editor Scene View window.
+
+- Re-organized the uSkyPro menu and easily to find all the uSkyPro components now.
+
+- Improved over all performance compares with previous beta version.
+
+
+***  New clouds system for uSkyPro is still working in progress. Please be patient for future update :)

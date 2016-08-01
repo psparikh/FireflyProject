@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Cloud_Overcast
+  m_Shader: {fileID: 4800000, guid: 233b91540c0754a64be0c0c30a8ff09f, type: 3}
+  m_ShaderKeywords: USKY_MAPPING_POLAR USKY_MASK_ON
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+    - first:
+        name: CloudSampler
+      second:
+        m_Texture: {fileID: 2800000, guid: 7ec5a666dff564a279c294e23c920253, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - first:
+        name: AlphaSaturation
+      second: 1.5
+    - first:
+        name: Attenuation
+      second: 0.6
+    - first:
+        name: Mask
+      second: 0.9
+    - first:
+        name: RotateAround
+      second: 0.35
+    - first:
+        name: RotateSpeed
+      second: 0.1
+    - first:
+        name: SkyColorMultiplier
+      second: 0.5
+    - first:
+        name: StepSize
+      second: 0.001
+    - first:
+        name: SunColorMultiplier
+      second: 1
+    - first:
+        name: USKY_MAPPING
+      second: 1
+    - first:
+        name: USKY_MASK
+      second: 1
+    m_Colors:
+    - first:
+        name: ShadeColorFromSky
+      second: {r: 0.109495215, g: 0.16203707, b: 0.21224011, a: 1}
+    - first:
+        name: ShadeColorFromSun
+      second: {r: 0.9130987, g: 0.42326775, b: 0.09305898, a: 1}

@@ -1,0 +1,44 @@
+uSkypro RoadMap:
+-----------------
+To Do List:
+
+- Support SphericalHarmonics ambient lighting with custom ground color control. 
+Ambient lighting will always automatically synchronize with the skybox color when changed.
+Support SphericalHarmonics both in editor and runtime.
+(Due to new skybox there does not have ground color on it, and it will not produce correct ambient if use skybox ambient mode. 
+So currently limited to use the manual "Ambient Gradients" only for ambient lighting.)
+
+- Add and improve clouds rendering with atmosphere scattering and occlusion.
+(Additional fogginess control in sky (skybox) and atmosphere scattering.)
+
+- Add Horizion Fog control for Height fog feature.
+
+- Basic Lensfare for the sun spot.
+
+- Mobile version of the uSkypro skybox material.
+
+- Moon Phase feature.
+
+
+Add Extra Feature Plan:
+----------------------
+- LightShaft (ImageEffects) with full sky occlusion.
+
+
+
+Optional Plan:
+--------------
+- Support bake full Day/Night cycle of the reflection probe. 
+No need to do the realtime rendering of the reflection cubemap.
+
+
+===================================================================================================
+
+Limitation
+---------------
+
+- Not supports skybox ambient (SphericalHarmonics).
+Due to new skybox there does not have gound color on it, and it will not produce correct ambient if use skybox ambient mode. 
+So currently limited to use the manual "Ambient Gradients" only for ambient lighting.)
+
+- Not supports the WebGL build.

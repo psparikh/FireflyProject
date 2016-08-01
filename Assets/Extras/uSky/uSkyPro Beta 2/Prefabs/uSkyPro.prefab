@@ -1,0 +1,459 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &114246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 492544}
+  - 108: {fileID: 10803816}
+  - 114: {fileID: 11471978}
+  m_Layer: 0
+  m_Name: Moon
+  m_TagString: Untagged
+  m_Icon: {fileID: 2800000, guid: 45a9f983af97e4e8392c0311d3dfc86c, type: 3}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &194868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 470222}
+  - 114: {fileID: 11459368}
+  - 114: {fileID: 11435448}
+  - 114: {fileID: 11444566}
+  m_Layer: 0
+  m_Name: uSkyPro
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &470222
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194868}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 492544}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!4 &492544
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114246}
+  m_LocalRotation: {x: .699789226, y: -.101464592, z: -.699789226, w: -.101464532}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 470222}
+  m_RootOrder: 0
+--- !u!108 &10803816
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114246}
+  m_Enabled: 0
+  serializedVersion: 6
+  m_Type: 1
+  m_Color: {r: .97647059, g: .823529422, b: .588235319, a: 1}
+  m_Intensity: 0
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_NormalBias: .400000006
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_BounceIntensity: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11435448
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d180adab9fa6548ea874cdd1104e2154, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  timeline: 17
+  sunAndMoon:
+    sunDirection: 0
+    sunEquatorOffset: 0
+    moonPositionOffset: 0
+  locationAndDate:
+    latitude: 0
+    longitude: 0
+    day: 0
+    month: 4
+    year: 2016
+    GMTOffset: 0
+  dayNightCycle:
+    playAtRuntime: 0
+    cycleSpeedCurve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1.25
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: .400000006
+        value: 1.25
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: .5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    playSpeed: .00499999989
+    steppedInterval: 2
+  m_AccumulatedTime: 0
+  m_ActualTime: 0
+--- !u!114 &11444566
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e0319a53383e4739991ddbfaabbfb8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exposure: 1
+  mieScattering: 1
+  sunAnisotropyFactor: .75999999
+  sunSize: 1
+  nightSky:
+    nightMode: 1
+    nightZenithColor: {r: .200000003, g: .290196091, b: .400000006, a: 1}
+    nightHorizonColor: {r: .282352954, g: .392156869, b: .501960814, a: .501960814}
+    starIntensity: 1
+    outerSpaceIntensity: .25
+    moonInnerCorona: {r: .882352948, g: .882352948, b: .882352948, a: .501960814}
+    moonOuterCorona: {r: .254901975, g: .345098048, b: .501960814, a: .501960814}
+    moonSize: 1
+  other:
+    groundOffset: 0
+    altitudeScale: 1
+    disableSkyboxOcean: 0
+    HDRMode: 0
+  precomputeParams:
+    atmosphereThickness: 1
+    wavelengths: {x: 680, y: 550, z: 440}
+    skyTint: {r: .501960814, g: .501960814, b: .501960814, a: 1}
+    inscatterAltitudeSample: 1
+  SkyboxMaterial: {fileID: 2100000, guid: bdee91fafbe003347821ce930979d79a, type: 2}
+  m_PrecomputeShader: {fileID: 4800000, guid: 2a1b568fb9fa24acdb5e3d4a27ad4ddb, type: 3}
+  m_uStarShader: {fileID: 4800000, guid: 09af57d917be24de7ad38b15e863ce4c, type: 3}
+--- !u!114 &11459368
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0948e7d644e034ec5a28b63d9053c03f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LightColor:
+    key0:
+      serializedVersion: 2
+      rgba: 4285555541
+    key1:
+      serializedVersion: 2
+      rgba: 4283739637
+    key2:
+      serializedVersion: 2
+      rgba: 9490681
+    key3:
+      serializedVersion: 2
+      rgba: 12246780
+    key4:
+      serializedVersion: 2
+      rgba: 0
+    key5:
+      serializedVersion: 2
+      rgba: 0
+    key6:
+      serializedVersion: 2
+      rgba: 0
+    key7:
+      serializedVersion: 2
+      rgba: 0
+    ctime0: 32112
+    ctime1: 33423
+    ctime2: 37355
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 2
+  SunIntensity: 1
+  MoonIntensity: .200000003
+  Ambient:
+    useGradientMode: 1
+    SkyColor:
+      key0:
+        serializedVersion: 2
+        rgba: 4280819740
+      key1:
+        serializedVersion: 2
+        rgba: 4282335543
+      key2:
+        serializedVersion: 2
+        rgba: 11053194
+      key3:
+        serializedVersion: 2
+        rgba: 13807249
+      key4:
+        serializedVersion: 2
+        rgba: 0
+      key5:
+        serializedVersion: 2
+        rgba: 0
+      key6:
+        serializedVersion: 2
+        rgba: 0
+      key7:
+        serializedVersion: 2
+        rgba: 0
+      ctime0: 31129
+      ctime1: 32768
+      ctime2: 36044
+      ctime3: 42598
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_NumColorKeys: 4
+      m_NumAlphaKeys: 2
+    EquatorColor:
+      key0:
+        serializedVersion: 2
+        rgba: 4280161553
+      key1:
+        serializedVersion: 2
+        rgba: 4283327588
+      key2:
+        serializedVersion: 2
+        rgba: 11048576
+      key3:
+        serializedVersion: 2
+        rgba: 0
+      key4:
+        serializedVersion: 2
+        rgba: 0
+      key5:
+        serializedVersion: 2
+        rgba: 0
+      key6:
+        serializedVersion: 2
+        rgba: 0
+      key7:
+        serializedVersion: 2
+        rgba: 0
+      ctime0: 31129
+      ctime1: 34078
+      ctime2: 38010
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_NumColorKeys: 3
+      m_NumAlphaKeys: 2
+    GroundColor:
+      key0:
+        serializedVersion: 2
+        rgba: 4279440405
+      key1:
+        serializedVersion: 2
+        rgba: 4283914590
+      key2:
+        serializedVersion: 2
+        rgba: 0
+      key3:
+        serializedVersion: 2
+        rgba: 0
+      key4:
+        serializedVersion: 2
+        rgba: 0
+      key5:
+        serializedVersion: 2
+        rgba: 0
+      key6:
+        serializedVersion: 2
+        rgba: 0
+      key7:
+        serializedVersion: 2
+        rgba: 0
+      ctime0: 31457
+      ctime1: 36044
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+--- !u!114 &11471978
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da93dc75d6533489da51a607c78931a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: AtmosphereResources.StarsMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 2db60d025acc149ae86d81c5ed696a44, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_SkyboxMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: bdee91fafbe003347821ce930979d79a, type: 2}
+    - target: {fileID: 0}
+      propertyPath: Timeline
+      value: 17.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: PrecomputeParams.InscatterAltitudeSample
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: nightZenithColor.r
+      value: .199499995
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: nightZenithColor.g
+      value: .288466275
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: nightZenithColor.b
+      value: .398999989
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: SunDirection
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: SkyboxMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: bdee91fafbe003347821ce930979d79a, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: PrecomputeParams.atmosphereThickness
+      value: .925000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: sunAndMoonSettings.sunDirection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: playCycle.steppedInterval
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: precomputeParams.wavelengths.y
+      value: 621.179993
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: precomputeParams.wavelengths.z
+      value: 440
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 194868}
+  m_IsPrefabParent: 1

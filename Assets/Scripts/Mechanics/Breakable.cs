@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class Breakable: MonoBehaviour
 {
     private List<GameObject> triangles;
+    private GameObject[] trianglesAll;
 
     public Vector3 offset;
 
@@ -14,8 +15,11 @@ public class Breakable: MonoBehaviour
 
     public float upwardsModifier = 3.0F;
 
+    private bool isSplit;
+
 #if UNITY_EDITOR
     public bool breakCheck;
+    public bool dissolve;
 #endif
 
     private Mesh currentMesh;
@@ -24,6 +28,7 @@ public class Breakable: MonoBehaviour
 
     void Awake()
     {
+        isSplit = false;
         triangles = new List<GameObject>();
         RetrieveMesh();
         RetrieveMaterials();
@@ -39,6 +44,12 @@ public class Breakable: MonoBehaviour
             StartCoroutine( Break() );
             breakCheck = !breakCheck;
         }
+        
+        if (dissolve)
+        {
+            StartCoroutine(Dissolve());
+        }
+        
     }
 #endif
 
@@ -47,7 +58,6 @@ public class Breakable: MonoBehaviour
     {
         if (col.collider.tag == "bullet")
         {
-            Debug.Log("true");
 
             Vector3 contactPoint = col.contacts[0].point;
             StartCoroutine( Break(contactPoint) );
@@ -66,16 +76,40 @@ public class Breakable: MonoBehaviour
     /// <param name="hitPos"></param>
     public IEnumerator Break( Vector3 hitPos )
     {
-        yield return StartCoroutine( Split() );
+        yield return StartCoroutine(Fragment());
         Shatter(hitPos + offset);
-        DestroyOriginal();
+
     }
 
     public IEnumerator Break()
     {
-        yield return StartCoroutine(Split());
+        yield return StartCoroutine(Fragment());
         Shatter(transform.position + offset);
+    }
+
+    /// <summary>
+    /// Dissolves object completely
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator Dissolve()
+    {
+        yield return StartCoroutine(Fragment());
+        ShatterAll();
         DestroyOriginal();
+    }
+
+    /// <summary>
+    /// Fragments by splitting mesh and hiding original renderer
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator Fragment()
+    {
+        if (!isSplit)
+        {
+            yield return StartCoroutine(SplitMesh());
+            HideOriginal();
+            isSplit = true;
+        }
     }
 
 
@@ -83,13 +117,13 @@ public class Breakable: MonoBehaviour
     /// Split the mesh into its triangles
     /// </summary>
     /// <returns></returns>
-    private IEnumerator Split()
+    private IEnumerator SplitMesh()
     {
         //Deactivate parent collider
-        if (GetComponent<Collider>())
-        {
-            GetComponent<Collider>().enabled = false;
-        }
+        //if (GetComponent<Collider>())
+        //{
+        //    GetComponent<Collider>().enabled = false;
+        //}
 
         Vector3[] verts = currentMesh.vertices;
         Vector3[] normals = currentMesh.normals;
@@ -133,21 +167,29 @@ public class Breakable: MonoBehaviour
 
                 triangles.Add(tri);
 
+                tri.transform.SetParent(transform);
+
             }
         }
+
+        trianglesAll = triangles.ToArray();
         yield return null;
 
     }
 
+
+    private void HideOriginal()
+    {
+        GetComponent<Renderer>().enabled = false;
+    }
 
     /// <summary>
     /// Destroys original object
     /// </summary>
     private void DestroyOriginal()
     {
-        GetComponent<Renderer>().enabled = false;
         triangles.Clear();
-        Destroy(gameObject);
+        Destroy(gameObject, 6.0f);
     }
 
     /// <summary>
@@ -158,12 +200,15 @@ public class Breakable: MonoBehaviour
 
         Vector3 explosionPos = hitPos;
         Collider[] colliders = Physics.OverlapSphere(explosionPos, radius, ~(LayerMask.NameToLayer("triangle")));
+
         foreach (Collider hit in colliders)
         {
             Rigidbody rb = hit.GetComponent<Rigidbody>();
 
             if (rb != null)
             {
+                rb.transform.SetParent(null);
+
                 rb.useGravity = true;
                 rb.isKinematic = false;
 
@@ -175,6 +220,35 @@ public class Breakable: MonoBehaviour
                 triangles.Remove(rb.gameObject);
             }
 
+        }
+
+    }
+
+    private void ShatterAll()
+    {
+        foreach (GameObject go in trianglesAll)
+        {
+            if (go != null)
+            {
+                Rigidbody rb = go.GetComponent<Rigidbody>();
+
+                if (rb != null)
+                {
+                    rb.transform.SetParent(null);
+
+                    rb.useGravity = true;
+                    rb.isKinematic = false;
+
+                    Vector3 pos = new Vector3(transform.position.x + Random.Range(-0.5f, 0.5f),
+                                                transform.position.y + Random.Range(-0.5f, 0.5f),
+                                                transform.position.z + Random.Range(-0.5f, 0.5f));
+
+                    rb.AddExplosionForce(power, pos, radius);
+                    Destroy(rb.gameObject, Random.Range(3.0f, 5.0f));
+
+                    triangles.Remove(rb.gameObject);
+                }
+            }
         }
 
     }

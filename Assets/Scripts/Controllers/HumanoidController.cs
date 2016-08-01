@@ -32,19 +32,20 @@ public class HumanoidController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        float distance = Vector3.Distance(headRef.position, target.position);
-        //headRef.LookAt((distance <= minRange) ? target : phoneRef);
+        if (currentActorState == ActorState.GazeUp)
+        {
+            float distance = Vector3.Distance(headRef.position, target.position);
 
-        Transform end = (distance <= minRange) ? target : phoneRef;
+            Transform end = (distance <= minRange) ? target : phoneRef;
+            Quaternion targetRotation = Quaternion.LookRotation(end.position - headRef.position);
 
-        Quaternion targetRotation = Quaternion.LookRotation(end.position - headRef.position);
-
-        // Smoothly rotate towards the target point.
-        headRef.rotation = Quaternion.Slerp(headRef.rotation, targetRotation, speed * Time.deltaTime);
+            // Smoothly rotate towards the target point.
+            headRef.rotation = Quaternion.Slerp(headRef.rotation, targetRotation, speed * Time.deltaTime);
+        }
 
     }
 
-    void OnDrawGizmos()
+    void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(headRef.position, minRange);

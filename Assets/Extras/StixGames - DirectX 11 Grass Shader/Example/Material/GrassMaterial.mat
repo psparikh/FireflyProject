@@ -63,7 +63,7 @@ Material:
       second: 0.3
     - first:
         name: _EdgeLength
-      second: 16.4
+      second: 21.2
     - first:
         name: _GrassFadeEnd
       second: 100
@@ -93,7 +93,7 @@ Material:
       second: 1.5
     - first:
         name: _MaxTessellation
-      second: 5
+      second: 4
     - first:
         name: _MinHeight00
       second: 0.8

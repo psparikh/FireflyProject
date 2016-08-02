@@ -17,7 +17,7 @@ public class ChangeFirefly : MonoBehaviour {
 	void Update () {
         device = SteamVR_Controller.Input((int)trackedObject.index);
 
-        if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
+        if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
         {
             firefly.Play();
             ParticleSystem.EmissionModule emissionMod = firefly.emission;
@@ -25,7 +25,7 @@ public class ChangeFirefly : MonoBehaviour {
             minMax.constantMax = 0;
             emissionMod.rate = minMax;
         }
-        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger) || Input.GetKeyDown(KeyCode.Space))
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
         {
             firefly.Play();
             ParticleSystem.EmissionModule emissionMod = firefly.emission;

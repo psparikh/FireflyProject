@@ -67,16 +67,18 @@ public class Draggable : MonoBehaviour{
 
     }
 
+    
     void OnTriggerStay(Collider col)
     {
+
         if (col.CompareTag("sling"))
         {
             //Grab Object
             if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger) || device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
             {
-                    dragging = true;
-                col.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                col.gameObject.transform.SetParent(gameObject.transform);
+                dragging = true;
+                col.transform.GetComponent<Rigidbody>().isKinematic = true;
+                col.transform.SetParent(gameObject.transform);
 
                 col.transform.position = transform.position;
                 col.attachedRigidbody.constraints = RigidbodyConstraints.None;
@@ -85,7 +87,7 @@ public class Draggable : MonoBehaviour{
             if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
             {
                 col.attachedRigidbody.isKinematic = false;
-                col.gameObject.transform.SetParent(defaultTargetParent);
+                col.transform.SetParent(defaultTargetParent);
 
                 returning = true;
 
@@ -94,6 +96,7 @@ public class Draggable : MonoBehaviour{
             }
         }
     }
+    
 
     public void FireBullet()
     {

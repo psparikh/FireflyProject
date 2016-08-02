@@ -17,6 +17,9 @@ public class Breakable: MonoBehaviour
 
     private bool isSplit;
 
+    public bool isStatic;
+    private bool initialized;
+
 #if UNITY_EDITOR
     public bool breakCheck;
     public bool dissolve;
@@ -34,9 +37,23 @@ public class Breakable: MonoBehaviour
         RetrieveMaterials();
     }
 
+    void Start()
+    {
+        if( isStatic && !initialized)
+        {
+            StartCoroutine(Fragment());
+            initialized = true;
+        }
+    }
+
 
     void Update()
     {
+
+        if( isStatic)
+        {
+            Destroy(gameObject.GetComponent<Collider>());
+        }
 
 #if UNITY_EDITOR
         if( breakCheck)
@@ -49,6 +66,7 @@ public class Breakable: MonoBehaviour
         {
             StartCoroutine(Dissolve());
         }
+
         
     }
 #endif
@@ -58,7 +76,6 @@ public class Breakable: MonoBehaviour
     {
         if (col.collider.tag == "bullet")
         {
-
             Vector3 contactPoint = col.contacts[0].point;
             StartCoroutine( Break(contactPoint) );
         }
@@ -77,14 +94,18 @@ public class Breakable: MonoBehaviour
     public IEnumerator Break( Vector3 hitPos )
     {
         yield return StartCoroutine(Fragment());
-        Shatter(hitPos + offset);
+        ShatterSection(hitPos + offset);
+        yield return null;
+
 
     }
 
     public IEnumerator Break()
     {
         yield return StartCoroutine(Fragment());
-        Shatter(transform.position + offset);
+        ShatterSection(transform.position + offset);
+        yield return null;
+
     }
 
     /// <summary>
@@ -96,6 +117,8 @@ public class Breakable: MonoBehaviour
         yield return StartCoroutine(Fragment());
         ShatterAll();
         DestroyOriginal();
+        yield return null;
+
     }
 
     /// <summary>
@@ -110,6 +133,7 @@ public class Breakable: MonoBehaviour
             HideOriginal();
             isSplit = true;
         }
+        yield return null;
     }
 
 
@@ -165,6 +189,8 @@ public class Breakable: MonoBehaviour
                 tri.GetComponent<Rigidbody>().useGravity = false;
                 tri.GetComponent<Rigidbody>().isKinematic = true;
 
+                tri.AddComponent<Shatter>();
+
                 triangles.Add(tri);
 
                 tri.transform.SetParent(transform);
@@ -195,7 +221,7 @@ public class Breakable: MonoBehaviour
     /// <summary>
     /// Shatter Object
     /// </summary>
-    private void Shatter( Vector3 hitPos )
+    private void ShatterSection( Vector3 hitPos )
     {
 
         Vector3 explosionPos = hitPos;

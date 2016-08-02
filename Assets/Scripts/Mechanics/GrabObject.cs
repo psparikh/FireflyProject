@@ -31,12 +31,16 @@ public class GrabObject : MonoBehaviour
     {
         if ( col.CompareTag("item") )
         {
+
+
             //Grab Object
             if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
             {
                 col.gameObject.GetComponent<Rigidbody>().isKinematic = true;
                 col.gameObject.transform.SetParent(gameObject.transform);
             }
+
+            /*
             if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
             {
                 col.attachedRigidbody.isKinematic = false;
@@ -44,6 +48,7 @@ public class GrabObject : MonoBehaviour
 
                 TossObject(col.attachedRigidbody);
             }
+            */
         }
     }
 

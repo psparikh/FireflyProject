@@ -44,6 +44,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 492544}
   m_Father: {fileID: 0}
@@ -54,9 +55,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 114246}
-  m_LocalRotation: {x: .699789226, y: -.101464592, z: -.699789226, w: -.101464532}
+  m_LocalRotation: {x: 0.7071068, y: 0.000000030908623, z: -0.7071068, w: 0.00000009272586}
   m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 470222}
   m_RootOrder: 0
@@ -66,10 +68,10 @@ Light:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 114246}
-  m_Enabled: 0
-  serializedVersion: 6
+  m_Enabled: 1
+  serializedVersion: 7
   m_Type: 1
-  m_Color: {r: .97647059, g: .823529422, b: .588235319, a: 1}
+  m_Color: {r: 0.6431373, g: 0.5294118, b: 0.38431373, a: 1}
   m_Intensity: 0
   m_Range: 10
   m_SpotAngle: 30
@@ -77,9 +79,11 @@ Light:
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
+    m_CustomResolution: -1
     m_Strength: 1
-    m_Bias: .0500000007
-    m_NormalBias: .400000006
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
@@ -88,10 +92,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
-  m_AreaSize: {x: 1, y: 1}
 --- !u!114 &11435448
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -104,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  timeline: 17
+  timeline: 18
   sunAndMoon:
     sunDirection: 0
     sunEquatorOffset: 0
@@ -112,7 +116,7 @@ MonoBehaviour:
   locationAndDate:
     latitude: 0
     longitude: 0
-    day: 0
+    day: 1
     month: 4
     year: 2016
     GMTOffset: 0
@@ -126,12 +130,12 @@ MonoBehaviour:
         inSlope: 0
         outSlope: 0
         tangentMode: 0
-      - time: .400000006
+      - time: 0.4
         value: 1.25
         inSlope: 0
         outSlope: 0
         tangentMode: 0
-      - time: .5
+      - time: 0.5
         value: 1
         inSlope: 0
         outSlope: 0
@@ -143,10 +147,11 @@ MonoBehaviour:
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-    playSpeed: .00499999989
-    steppedInterval: 2
+      m_RotationOrder: 4
+    playSpeed: 0.005
+    steppedInterval: 0.1
   m_AccumulatedTime: 0
-  m_ActualTime: 0
+  m_ActualTime: 18
 --- !u!114 &11444566
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -159,18 +164,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exposure: 1
-  mieScattering: 1
-  sunAnisotropyFactor: .75999999
-  sunSize: 1
+  mieScattering: 1.9
+  sunAnisotropyFactor: 0.71
+  sunSize: 5
   nightSky:
     nightMode: 1
-    nightZenithColor: {r: .200000003, g: .290196091, b: .400000006, a: 1}
-    nightHorizonColor: {r: .282352954, g: .392156869, b: .501960814, a: .501960814}
-    starIntensity: 1
-    outerSpaceIntensity: .25
-    moonInnerCorona: {r: .882352948, g: .882352948, b: .882352948, a: .501960814}
-    moonOuterCorona: {r: .254901975, g: .345098048, b: .501960814, a: .501960814}
-    moonSize: 1
+    nightZenithColor: {r: 0.2, g: 0.2901961, b: 0.4, a: 1}
+    nightHorizonColor: {r: 0.28235295, g: 0.39215687, b: 0.5019608, a: 0.5019608}
+    starIntensity: 3.74
+    outerSpaceIntensity: 0.13
+    moonInnerCorona: {r: 0.88235295, g: 0.88235295, b: 0.88235295, a: 0.5019608}
+    moonOuterCorona: {r: 0.25490198, g: 0.34509805, b: 0.5019608, a: 0.5019608}
+    moonSize: 1.32
   other:
     groundOffset: 0
     altitudeScale: 1
@@ -179,7 +184,7 @@ MonoBehaviour:
   precomputeParams:
     atmosphereThickness: 1
     wavelengths: {x: 680, y: 550, z: 440}
-    skyTint: {r: .501960814, g: .501960814, b: .501960814, a: 1}
+    skyTint: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
     inscatterAltitudeSample: 1
   SkyboxMaterial: {fileID: 2100000, guid: bdee91fafbe003347821ce930979d79a, type: 2}
   m_PrecomputeShader: {fileID: 4800000, guid: 2a1b568fb9fa24acdb5e3d4a27ad4ddb, type: 3}
@@ -238,8 +243,8 @@ MonoBehaviour:
     atime7: 0
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
-  SunIntensity: 1
-  MoonIntensity: .200000003
+  SunIntensity: 1.75
+  MoonIntensity: 0.15
   Ambient:
     useGradientMode: 1
     SkyColor:

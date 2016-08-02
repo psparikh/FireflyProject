@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: GrassMaterial
   m_Shader: {fileID: 4800000, guid: 1902925be899f6c4794040c4a1c39b50, type: 3}
-  m_ShaderKeywords: SIMPLE_GRASS VERTEX_DENSITY
+  m_ShaderKeywords: PBR_GRASS_LIGHTING SIMPLE_GRASS VERTEX_DENSITY
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -63,7 +63,7 @@ Material:
       second: 0.3
     - first:
         name: _EdgeLength
-      second: 15.9
+      second: 16.4
     - first:
         name: _GrassFadeEnd
       second: 100
@@ -72,13 +72,13 @@ Material:
       second: 50
     - first:
         name: _LODEnd
-      second: 100
+      second: 50.2
     - first:
         name: _LODMax
-      second: 1
+      second: 1.21
     - first:
         name: _LODStart
-      second: 20
+      second: 19.61
     - first:
         name: _MaxHeight00
       second: 1
@@ -144,7 +144,7 @@ Material:
       second: 0.1
     - first:
         name: _WindRotation
-      second: 0
+      second: 0.4
     m_Colors:
     - first:
         name: _BurnColor
@@ -193,4 +193,4 @@ Material:
       second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - first:
         name: _WindParams
-      second: {r: 0.3, g: 1.2, b: 0.15, a: 1.3}
+      second: {r: 0.79, g: 0.83, b: -0.01, a: 0.09}

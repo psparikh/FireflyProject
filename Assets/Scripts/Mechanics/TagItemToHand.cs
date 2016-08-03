@@ -3,31 +3,45 @@ using System.Collections;
 
 public class TagItemToHand : MonoBehaviour {
 
-    //public GameObject item;
+    public GameObject mainItem;
+    private SteamVR_ControllerManager controllerManager;
+    private bool isLeft;
 
-    public GameObject slingshot;
-
-	// Use this for initialization
-	void Start () {
-        //slingshot.SetActive(false);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-        //slingshot.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-        //slingshot.gameObject.transform.SetParent(gameObject.transform);
-
+    void Awake()
+    {
+        controllerManager = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<SteamVR_ControllerManager>();
     }
 
-    void OnTriggerEnter( Collider col )
+
+    void OnTriggerStay(Collider col)
     {
-        if( col.name.StartsWith("Controller") )
+        if (col.gameObject == controllerManager.left || col.gameObject == controllerManager.right)
         {
-
-
-            slingshot.SetActive(true);
-            slingshot.transform.position = transform.position;
+            isLeft = (col.gameObject == controllerManager.left) ? true : false;
+            SetHands();
+            PositionItem();
+            mainItem.SetActive(true);
+            Destroy(gameObject);
         }
     }
+
+    /// <summary>
+    /// Set Hands to activate item controller
+    /// </summary>
+    private void SetHands()
+    {
+        ((!isLeft) ? controllerManager.left : controllerManager.right).GetComponent<Draggable>().enabled = true;
+        Destroy(((isLeft) ? controllerManager.left : controllerManager.right).GetComponent<Draggable>() );
+    }
+
+    /// <summary>
+    /// Position item relative to triggered hand
+    /// </summary>
+    private void PositionItem()
+    {
+        mainItem.gameObject.transform.SetParent(((isLeft) ? controllerManager.left : controllerManager.right).transform );
+        mainItem.transform.localPosition = Vector3.zero;
+        mainItem.transform.localEulerAngles = new Vector3(90.0f, 180.0f, 180.0f);
+    }
+
 }

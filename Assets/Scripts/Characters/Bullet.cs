@@ -3,18 +3,15 @@ using System.Collections;
 
 public class Bullet : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public GameObject explosionParticlesPrefab;
 
-    void OnCollisionEnter( Collision col )
+    public void OnCollisionEnter(Collision collision)
     {
-            Destroy(gameObject);
+        if (explosionParticlesPrefab)
+        {
+            GameObject explosion = (GameObject)Instantiate(explosionParticlesPrefab, transform.position, explosionParticlesPrefab.transform.rotation);
+            Destroy(explosion, explosion.GetComponent<ParticleSystem>().startLifetime);
+        }
+        Destroy(gameObject);
     }
 }

@@ -4,17 +4,18 @@ using System.Collections;
 public class Shatter : MonoBehaviour
 {
 
-    public float radius = 1.5f;
-    public float power = 200.0f;
-    public float upwardsModifier = 20.0f;
+    private float s_radius = 0.37f;
+    private float s_power = 100.0f;
+    private float s_upwardsModifier = 3.0f;
+
+    public float multiplier = 1.0f;
 
     void OnCollisionEnter(Collision col)
     {
-
         if (col.collider.tag == "bullet" )
         {
             Vector3 contactPoint = col.contacts[0].point;
-            Collider[] colliders = Physics.OverlapSphere(contactPoint, radius, ~(LayerMask.NameToLayer("triangle")));
+            Collider[] colliders = Physics.OverlapSphere(contactPoint, s_radius * multiplier, ~(LayerMask.NameToLayer("triangle")));
 
             foreach (Collider hit in colliders)
             {
@@ -27,9 +28,9 @@ public class Shatter : MonoBehaviour
                     rb.useGravity = true;
                     rb.isKinematic = false;
 
-                    Vector3 pos = new Vector3(contactPoint.x + Random.Range(-0.5f, 0.5f), contactPoint.y + Random.Range(-0.5f, 0.5f), contactPoint.z + Random.Range(-0.5f, 0.5f));
+                    Vector3 pos = new Vector3(contactPoint.x, contactPoint.y, contactPoint.z);
 
-                    rb.AddExplosionForce(power, pos, radius, upwardsModifier);
+                    rb.AddExplosionForce(s_power, pos, s_radius * multiplier, s_upwardsModifier);
                     Destroy(rb.gameObject, Random.Range(3.0f, 5.0f));
                 }
 

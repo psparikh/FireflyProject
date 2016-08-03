@@ -5,23 +5,22 @@ using System.Collections.Generic;
 
 public class Breakable: MonoBehaviour
 {
-    private List<GameObject> triangles;
-    private GameObject[] trianglesAll;
+    private List<GameObject> activeTriangles;
+    private GameObject[] triangles;
 
-    public Vector3 offset;
-
-    public float radius;
-    public float power;
-
+    //Determine dissolve blast parameters
+    public Vector3 offset = Vector3.zero;
+    public float radius = 1.0f;
+    public float power = 100.0f;
     public float upwardsModifier = 3.0F;
 
-    private bool isSplit;
+    //Determine shatter section size
+    public float shatterPercentage;
 
-    public bool isStatic;
-    private bool initialized;
+    public bool fragmentOnStart = false;
+    private bool isFragmented;
 
 #if UNITY_EDITOR
-    public bool breakCheck;
     public bool dissolve;
 #endif
 
@@ -31,55 +30,39 @@ public class Breakable: MonoBehaviour
 
     void Awake()
     {
-        isSplit = false;
-        triangles = new List<GameObject>();
+        isFragmented = false;
+        activeTriangles = new List<GameObject>();
         RetrieveMesh();
         RetrieveMaterials();
     }
 
     void Start()
     {
-        if( isStatic && !initialized)
+        if(fragmentOnStart && !isFragmented)
         {
             StartCoroutine(Fragment());
-            initialized = true;
+            isFragmented = true;
         }
     }
 
 
     void Update()
     {
-
-        if( isStatic)
-        {
-            Destroy(gameObject.GetComponent<Collider>());
-        }
-
-#if UNITY_EDITOR
-        if( breakCheck)
-        {
-            StartCoroutine( Break() );
-            breakCheck = !breakCheck;
-        }
-        
+#if UNITY_EDITOR        
         if (dissolve)
+            StartCoroutine(Dissolve());
+#endif
+    }
+
+
+    public void OnTriggerEnter(Collider col)
+    {
+        if (col.tag == "bullet")
         {
             StartCoroutine(Dissolve());
         }
-
-        
     }
-#endif
 
-
-    public void OnCollisionEnter(Collision col)
-    {
-        if (col.collider.tag == "bullet")
-        {
-            Vector3 contactPoint = col.contacts[0].point;
-            StartCoroutine( Break(contactPoint) );
-        }
-    }
 
     void OnDrawGizmosSelected()
     {
@@ -87,26 +70,6 @@ public class Breakable: MonoBehaviour
         Gizmos.DrawWireSphere(transform.position + offset, radius);
     }
 
-    /// <summary>
-    /// Break Object at Position
-    /// </summary>
-    /// <param name="hitPos"></param>
-    public IEnumerator Break( Vector3 hitPos )
-    {
-        yield return StartCoroutine(Fragment());
-        ShatterSection(hitPos + offset);
-        yield return null;
-
-
-    }
-
-    public IEnumerator Break()
-    {
-        yield return StartCoroutine(Fragment());
-        ShatterSection(transform.position + offset);
-        yield return null;
-
-    }
 
     /// <summary>
     /// Dissolves object completely
@@ -121,17 +84,19 @@ public class Breakable: MonoBehaviour
 
     }
 
+
     /// <summary>
     /// Fragments by splitting mesh and hiding original renderer
     /// </summary>
     /// <returns></returns>
     private IEnumerator Fragment()
     {
-        if (!isSplit)
+        if (!isFragmented)
         {
             yield return StartCoroutine(SplitMesh());
-            HideOriginal();
-            isSplit = true;
+            GetComponent<Renderer>().enabled = false;
+            GetComponent<Collider>().enabled = false;
+            isFragmented = true;
         }
         yield return null;
     }
@@ -143,12 +108,6 @@ public class Breakable: MonoBehaviour
     /// <returns></returns>
     private IEnumerator SplitMesh()
     {
-        //Deactivate parent collider
-        //if (GetComponent<Collider>())
-        //{
-        //    GetComponent<Collider>().enabled = false;
-        //}
-
         Vector3[] verts = currentMesh.vertices;
         Vector3[] normals = currentMesh.normals;
         Vector2[] uvs = currentMesh.uv;
@@ -190,69 +149,46 @@ public class Breakable: MonoBehaviour
                 tri.GetComponent<Rigidbody>().isKinematic = true;
 
                 tri.AddComponent<Shatter>();
+                tri.GetComponent<Shatter>().multiplier = shatterPercentage;
 
-                triangles.Add(tri);
+                activeTriangles.Add(tri);
 
                 tri.transform.SetParent(transform);
-
             }
         }
 
-        trianglesAll = triangles.ToArray();
+        triangles = activeTriangles.ToArray();
         yield return null;
 
     }
 
 
+    /// <summary>
+    /// Hides original mesh so its only used as placeholder
+    /// </summary>
     private void HideOriginal()
     {
         GetComponent<Renderer>().enabled = false;
+        GetComponent<Collider>().enabled = false;
     }
+
 
     /// <summary>
     /// Destroys original object
     /// </summary>
     private void DestroyOriginal()
     {
-        triangles.Clear();
+        activeTriangles.Clear();
         Destroy(gameObject, 6.0f);
     }
 
+
     /// <summary>
-    /// Shatter Object
+    /// Shatters whole object
     /// </summary>
-    private void ShatterSection( Vector3 hitPos )
-    {
-
-        Vector3 explosionPos = hitPos;
-        Collider[] colliders = Physics.OverlapSphere(explosionPos, radius, ~(LayerMask.NameToLayer("triangle")));
-
-        foreach (Collider hit in colliders)
-        {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
-
-            if (rb != null)
-            {
-                rb.transform.SetParent(null);
-
-                rb.useGravity = true;
-                rb.isKinematic = false;
-
-                Vector3 pos = new Vector3(explosionPos.x + Random.Range(-0.5f, 0.5f), explosionPos.y + Random.Range(-0.5f, 0.5f), explosionPos.z + Random.Range(-0.5f, 0.5f));
-
-                rb.AddExplosionForce(power, pos, radius, upwardsModifier);
-                Destroy(rb.gameObject, Random.Range(3.0f, 5.0f));
-
-                triangles.Remove(rb.gameObject);
-            }
-
-        }
-
-    }
-
     private void ShatterAll()
     {
-        foreach (GameObject go in trianglesAll)
+        foreach (GameObject go in triangles)
         {
             if (go != null)
             {
@@ -265,19 +201,22 @@ public class Breakable: MonoBehaviour
                     rb.useGravity = true;
                     rb.isKinematic = false;
 
-                    Vector3 pos = new Vector3(transform.position.x + Random.Range(-0.5f, 0.5f),
-                                                transform.position.y + Random.Range(-0.5f, 0.5f),
-                                                transform.position.z + Random.Range(-0.5f, 0.5f));
+                    Vector3 sourcePos = transform.position + offset;
+
+                    Vector3 pos = new Vector3(sourcePos.x + Random.Range(-0.5f, 0.5f),
+                                                sourcePos.y + Random.Range(-0.5f, 0.5f),
+                                                sourcePos.z + Random.Range(-0.5f, 0.5f));
 
                     rb.AddExplosionForce(power, pos, radius);
                     Destroy(rb.gameObject, Random.Range(3.0f, 5.0f));
 
-                    triangles.Remove(rb.gameObject);
+                    activeTriangles.Remove(rb.gameObject);
                 }
             }
         }
 
     }
+
 
     /// <summary>
     /// Sets Mesh
@@ -295,6 +234,7 @@ public class Breakable: MonoBehaviour
         }
         currentMesh = M;
     }
+
 
     /// <summary>
     /// Sets Materials

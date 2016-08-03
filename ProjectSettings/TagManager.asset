@@ -9,6 +9,7 @@ TagManager:
   - bullet
   - lamp
   - rain
+  - humanoid
   layers:
   - Default
   - TransparentFX

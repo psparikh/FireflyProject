@@ -102,7 +102,7 @@ public class QT_ModifyColorEditor : Editor {
                         isSetup = true;
                 }
 
-               
+                
                // if (MC.isPWMesh)
                //     MC.pwMeshOverride = EditorGUILayout.Toggle("New Channel Mapping", MC.pwMeshOverride);
 
@@ -291,14 +291,19 @@ public class QT_ModifyColorEditor : Editor {
                         {
                             int vertIndex = MC.AllChannels[c].targetVertices[z];
                             //lerp between the allchannel color and newcolors via alpha of the allchannels
+                            //allchannels corresponds to the channels in the inspector and its data
                             float newR = Mathf.Lerp(newColors[vertIndex].r, MC.AllChannels[c].Color[0], MC.AllChannels[c].Color[3] * MC.globalAlpha);
                             float newG = Mathf.Lerp(newColors[vertIndex].g, MC.AllChannels[c].Color[1], MC.AllChannels[c].Color[3] * MC.globalAlpha);
                             float newB = Mathf.Lerp(newColors[vertIndex].b, MC.AllChannels[c].Color[2], MC.AllChannels[c].Color[3] * MC.globalAlpha);
+
+                            float channelAlpha = SetChannelVertexAlpha(c); //add the correct alpha color value per channel so it becomes a PW mesh
+
                             newColors[vertIndex] = new Color(newR, newG, newB);
                             //now to a global fade
                             if (MC.preserveShading)
                                 newColors[vertIndex] *= MC.newShading[vertIndex];
 
+                            newColors[vertIndex].a = channelAlpha;
                             newUV4s[vertIndex].x = MC.AllChannels[c].Smoothness;
                             newUV4s[vertIndex].y = MC.AllChannels[c].Metallic;
                         }
@@ -327,6 +332,26 @@ public class QT_ModifyColorEditor : Editor {
 				Application.OpenURL("http://qt-ent.com/PolyWorld/scripts/");
             }
         }
+    }
+
+    float SetChannelVertexAlpha(int currentChannel)
+    {
+        float value = 0;
+        //the float values have to be set precisely to the values we hard coded.
+        if (currentChannel == 0)
+            value = 0.01176470588235294117647058823529f;
+        else if (currentChannel == 1)
+            value = 0.01960784313725490196078431372549f;
+        else if (currentChannel == 2)
+            value = 0.03137254901960784313725490196078f;
+        else if (currentChannel == 3)
+            value = 0.03921568627450980392156862745098f;
+        else if (currentChannel == 4)
+            value = 0.05098039215686274509803921568627f;
+        else
+            value = 0.05882352941176470588235294117647f;
+        return value;            
+        
     }
 
     void CollectGOs(GameObject obj)
@@ -416,7 +441,7 @@ public class QT_ModifyColorEditor : Editor {
             
 
         }*/
-        return pass;
+            return pass;
 
     }
     
@@ -455,12 +480,12 @@ public class QT_ModifyColorEditor : Editor {
         {
 
             //patch to write previous alpha data for polyworld meshes..gotta find a better place for this.
-            Color[] tempalpha = new Color[MC.tempMesh.vertexCount];
-            tempalpha = MC.tempMesh.colors;
-            for (int c = 0; c < MC.tempMesh.vertexCount; c++)            
-                tempalpha[c].a = MC.originalVCs[c].a;
+           // Color[] tempalpha = new Color[MC.tempMesh.vertexCount];
+           // tempalpha = MC.tempMesh.colors;
+           // for (int c = 0; c < MC.tempMesh.vertexCount; c++)            
+            //    tempalpha[c].a = MC.originalVCs[c].a;
             
-            MC.tempMesh.colors = tempalpha;
+           // MC.tempMesh.colors = tempalpha;
             MC.isSaving = true;
             MC.tempMesh.name = MC.meshFileName;
 
@@ -616,21 +641,21 @@ public class QT_ModifyColorEditor : Editor {
             MC.originalValues = new float[MC.mesh.colors32.Length];
             MC.originalVCs = new Color[MC.mesh.colors.Length];
             MC.originalVC_HSVs = new Vector3[MC.mesh.colors.Length];
-           // MC.uv4s = new Vector2[MC.mesh.vertexCount]; //setup the PBR array based on vertex count of mesh
-
+            
             for (int c = 0; c < MC.originalValues.Length; c++)
             {
-                MC.originalVCs[c] = MC.mesh.colors[c];
-              //  MC.uv4s[c] = new Vector2(0, 0); //setup initial values to be plastic and rough.
+                MC.originalVCs[c] = MC.mesh.colors[c]; //copy vertex colors of original mesh
+              
 
                 Color vc = MC.mesh.colors[c];
                 //Plug each vertex alpha that is found into their respective channel.
                 float VA = MC.originalVCs[c].a * 255;
                 //only pw meshes are masked by alpha values.
-                if (!MC.pwMeshOverride)
-                {
+                //if (!MC.pwMeshOverride)
+                //{                    
                     if (VA == 3)//3=1, 5=2, 8=3, 10=4. 13=5, 15=6 There will be at least a VA of 1.0 in max applied to a PW mesh.
                     {
+                                 
                         MC.AllChannels[0].targetVertices.Add(c);
                         MC.isPWMesh = true;
                     }
@@ -659,7 +684,7 @@ public class QT_ModifyColorEditor : Editor {
                         MC.AllChannels[5].targetVertices.Add(c);
                         MC.isPWMesh = true;
                     }
-                }
+              //  }
                 Color.RGBToHSV(vc, out h, out s, out v);
                 MC.originalValues[c] = v;
                 MC.originalVC_HSVs[c] = new Vector3(h, s, v);

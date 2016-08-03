@@ -27,7 +27,7 @@ public class QT_ModifyColor : MonoBehaviour {
     public float Highlights = 0f;
     public float ContrastClamp1 = 0f;
     public float ContrastClamp2 = 1f;
-    public bool preserveShading = true;
+    public bool preserveShading = false;
 
     [HideInInspector]
     public Color[] originalVCs;

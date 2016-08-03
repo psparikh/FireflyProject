@@ -9,7 +9,7 @@ public class TagItemToHand : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        slingshot.SetActive(false);
+        //slingshot.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -24,6 +24,8 @@ public class TagItemToHand : MonoBehaviour {
     {
         if( col.name.StartsWith("Controller") )
         {
+
+
             slingshot.SetActive(true);
             slingshot.transform.position = transform.position;
         }

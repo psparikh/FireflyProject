@@ -21,7 +21,7 @@ public class RainStop : MonoBehaviour {
         device = SteamVR_Controller.Input((int)trackedObject.index);
         
 
-        if (device.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
+        if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
         {
             ParticleSystem.VelocityOverLifetimeModule velLife = system.velocityOverLifetime;
             ParticleSystem.MinMaxCurve minMax = new ParticleSystem.MinMaxCurve();
@@ -99,7 +99,7 @@ public class RainStop : MonoBehaviour {
 
         //if button isn't pressed code so that it increases speed to -55
 
-        if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
+        if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
         {
             ParticleSystem.VelocityOverLifetimeModule velLife = system.velocityOverLifetime;
             ParticleSystem.MinMaxCurve minMax = new ParticleSystem.MinMaxCurve();

@@ -1,9 +1,8 @@
 ﻿/*
- * QT_ConvertMesh v1.71
+ * QT_ConvertMesh
  * 
  * Known Issues:
- * - Unity doesn't give access to blendshape mesh data. Blendshapes can not be converted until support is added: http://feedback.unity3d.com/suggestions/expose-blend-shape-vertex-data
- * - as a result, gameobjects with skinnesmeshrender components that have blendshapes but no boneweights get converted to simple props (meshrenderer and meshfilter component-based). 
+ * - Blendshapes not supported yet 
  * - Prefab hierarchies which contain meshes of the same name will create problems when "Overwrite Exported Data" is checked. 
 
 */
@@ -19,21 +18,26 @@ public class QT_ConvertMesh : EditorWindow
 
     static void Init()
     {
-        GUIContent gcw = new GUIContent("PolyWorld Mesher");
+        
         QT_ConvertMesh window = (QT_ConvertMesh)EditorWindow.GetWindow(typeof(QT_ConvertMesh));
-        window.titleContent = gcw;
-        window.maxSize = new Vector2(300, 305);
-        window.minSize = window.maxSize;
         window.Show();
+       
         
     }
 
-
+    void OnEnable()
+    {
+        this.maxSize = new Vector2(300, 305);
+        this.minSize = this.maxSize;        
+        this.titleContent = new GUIContent("PolyWorld Mesher");
+        WorldIcon = (Texture)Resources.Load("QT_PolyWorld-icon");
+        exportWindowsFolder = Application.dataPath;
+    }
     private GameObject[] SourceGOs;
     private Color brightenColor = Color.black;
     private string HelpMessage;
 
-    Texture WorldIcon = (Texture)Resources.Load("QT_PolyWorld-icon");//(Texture)AssetDatabase.LoadAssetAtPath("Assets/Quantum Theory/Polyworld/Editor/QT_PolyWorld-icon.png", typeof(Texture));
+    Texture WorldIcon;
 
 
     private bool filterBilinear = true;
@@ -41,7 +45,7 @@ public class QT_ConvertMesh : EditorWindow
     BlurAmount blurAmount = BlurAmount.None;
     int mipLevel = 0;
     private string exportAssetFolder = "Assets"; //contains the folder where we'll export all the assets
-    private string exportWindowsFolder = Application.dataPath;//contains complete path to the exportAssetFolder
+    private string exportWindowsFolder;//contains complete path to the exportAssetFolder
     private string tempExportFolder = "Assets";
     private bool overwriteMeshes = true; //if meshes of the same name are found, overwrite them.
     private bool recalcLMUVs = false; //useful for when multiple meshes get combined.

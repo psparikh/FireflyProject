@@ -9,14 +9,10 @@ public class QT_PolyWorldTerrainEditor : Editor {
 
     private QT_PolyWorldTerrain PWT;
 
-   // private bool terrainGOEnabled = true;
-   // private bool PWTGOEnabled = true;
-    
-  //  private GUIStyle styleRed = new GUIStyle();
     private GUIStyle boxStyle;
-    Texture WorldIcon = (Texture)Resources.Load("PW_LogoWide");//(Texture)AssetDatabase.LoadAssetAtPath("Assets/Quantum Theory/Polyworld/Editor/QT_PolyWorld-icon.png", typeof(Texture));
-    Texture UpdateImg = (Texture)Resources.Load("PW_BtnUpdateTerrain");
-    Texture UpdateColor = (Texture)Resources.Load("PW_BtnUpdateColor");
+    Texture WorldIcon;
+    Texture UpdateImg;
+    Texture UpdateColor;
 
     public override void OnInspectorGUI()
     {
@@ -33,8 +29,9 @@ public class QT_PolyWorldTerrainEditor : Editor {
         GUILayout.BeginVertical(GUI.skin.box);
         GUILayout.Label("Terrain Visibility:");
         GUILayout.BeginHorizontal();
-        PWT.terrainGOEnabled = GUILayout.Toggle(PWT.terrainGOEnabled, "Source Terrain",GUI.skin.button,GUILayout.Height(30));
-        PWT.gameObject.GetComponent<Terrain>().enabled = PWT.terrainGOEnabled;
+        PWT.terrainGOEnabled = GUILayout.Toggle(PWT.terrainGOEnabled, "Source Terrain",GUI.skin.button,GUILayout.Height(30));      
+            
+        PWT.gameObject.GetComponent<Terrain>().drawHeightmap= PWT.terrainGOEnabled;
 
         PWT.PWTGOEnabled = GUILayout.Toggle(PWT.PWTGOEnabled, "PolyWorld Terrain", GUI.skin.button, GUILayout.Height(30));
         GUILayout.EndVertical();
@@ -285,8 +282,6 @@ public class QT_PolyWorldTerrainEditor : Editor {
             SetTextureImporterFormat(true, PWT.terrainData.splatPrototypes[x].texture);
     }
 
-   
-
     private void WriteAllContent(GameObject PWTParent, List<GameObject[]> everyLODSet)
     {
         //write meshes first, associate them, then write the prefab.
@@ -390,6 +385,9 @@ public class QT_PolyWorldTerrainEditor : Editor {
    
     public void OnEnable()
     {
+        WorldIcon = (Texture)Resources.Load("PW_LogoWide");
+        UpdateImg = (Texture)Resources.Load("PW_BtnUpdateTerrain");
+        UpdateColor = (Texture)Resources.Load("PW_BtnUpdateColor");
         PWT = (QT_PolyWorldTerrain)target;
         PWT.SetupTerrainAssociation(); //initialize all the variables        
     }    

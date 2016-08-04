@@ -18,6 +18,7 @@ public class Breakable: MonoBehaviour
     public float shatterPercentage;
 
     public bool fragmentOnStart = false;
+    public bool addColliders = true;
     private bool isFragmented;
 
 #if UNITY_EDITOR
@@ -142,7 +143,7 @@ public class Breakable: MonoBehaviour
                 tri.AddComponent<MeshRenderer>().material = currentMaterial[submesh];
                 tri.AddComponent<MeshFilter>().mesh = mesh;
 
-                tri.AddComponent<BoxCollider>();
+                if( addColliders ) tri.AddComponent<BoxCollider>();
                 tri.AddComponent<Rigidbody>();
 
                 tri.GetComponent<Rigidbody>().useGravity = false;

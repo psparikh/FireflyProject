@@ -3,9 +3,13 @@ using System.Collections;
 
 public class TagItemToHand : MonoBehaviour {
 
-    public GameObject mainItem;
+    public GameObject itemPrefab;
     private SteamVR_ControllerManager controllerManager;
     private bool isLeft;
+
+    public Vector3 offsetPos = Vector3.zero;
+    public Vector3 offsetRot = Vector3.zero;
+
 
     void Awake()
     {
@@ -18,9 +22,8 @@ public class TagItemToHand : MonoBehaviour {
         if (col.gameObject == controllerManager.left || col.gameObject == controllerManager.right)
         {
             isLeft = (col.gameObject == controllerManager.left) ? true : false;
-            SetHands();
+            SetItem();
             PositionItem();
-            mainItem.SetActive(true);
             Destroy(gameObject);
         }
     }
@@ -28,7 +31,7 @@ public class TagItemToHand : MonoBehaviour {
     /// <summary>
     /// Set Hands to activate item controller
     /// </summary>
-    private void SetHands()
+    private void SetItem()
     {
         ((!isLeft) ? controllerManager.left : controllerManager.right).GetComponent<Draggable>().enabled = true;
         Destroy(((isLeft) ? controllerManager.left : controllerManager.right).GetComponent<Draggable>() );
@@ -39,9 +42,9 @@ public class TagItemToHand : MonoBehaviour {
     /// </summary>
     private void PositionItem()
     {
-        mainItem.gameObject.transform.SetParent(((isLeft) ? controllerManager.left : controllerManager.right).transform );
-        mainItem.transform.localPosition = Vector3.zero;
-        mainItem.transform.localEulerAngles = new Vector3(90.0f, 180.0f, 180.0f);
+        GameObject mainItem = (GameObject)Instantiate(itemPrefab, ((isLeft) ? controllerManager.left : controllerManager.right).transform);
+        mainItem.transform.localPosition = offsetPos;
+        mainItem.transform.localEulerAngles = offsetRot;
     }
 
 }

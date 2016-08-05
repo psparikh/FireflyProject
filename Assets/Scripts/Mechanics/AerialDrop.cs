@@ -28,7 +28,7 @@ public class AerialDrop : MonoBehaviour {
     public int numDropsRange;
     public float dropRateRange;
 
-    public bool doDrop = true;
+    public bool doDrop = false;
 
     // Use this for initialization
     void Start () {

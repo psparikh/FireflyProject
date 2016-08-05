@@ -547,9 +547,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefabs:
   - {fileID: 1000012958821128, guid: 21dff85f8e8377b43acde066c78595e2, type: 2}
-  modelPrefabs: []
+  modelPrefabs:
+  - {fileID: 1000010045492210, guid: c661279bbeaebea4d9ae7cbc7c226007, type: 2}
   bulletSpawnPoint: {fileID: 1000011456941520}
-  bulletPlaceholder: {fileID: 1000012907351736}
   trackedPivotObject: {fileID: 0}
   trackedMainObject: {fileID: 0}
   forceConstant: 200

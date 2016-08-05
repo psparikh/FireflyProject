@@ -244,7 +244,7 @@ MonoBehaviour:
   shatterPercentage: 0
   fragmentOnStart: 0
   addColliders: 0
-  useGravity: 1
+  useGravity: 0
   dissolve: 0
 --- !u!114 &114000012861299128
 MonoBehaviour:
@@ -262,11 +262,11 @@ MonoBehaviour:
   dropRate: 0.2
   dropPoint: {fileID: 4000010985106470}
   spawnPrefabs:
-  - {fileID: 1000010990803688, guid: b901f1be85f70a14db6f6e4f10877ffa, type: 2}
+  - {fileID: 1000011988525322, guid: a2e09e7fdf4462449901e8f67858df15, type: 2}
   spanSizeRange: 20
   numDropsRange: 3
   dropRateRange: 0.05
-  doDrop: 1
+  doDrop: 0
 --- !u!114 &114000013499282836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -296,7 +296,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  loopType: 0
+  loopType: 1
   waypoints: []
   events:
   - m_PersistentCalls:
@@ -343,17 +343,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
-      - m_Target: {fileID: 114000011707650612}
-        m_MethodName: SetDissolve
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 1
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null

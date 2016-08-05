@@ -4,10 +4,8 @@ using System.Collections;
 public class NatureSpawn : MonoBehaviour {
 
     public GameObject natureResponsePrefab;
-    private Vector3 positionOffset = new Vector3(2.533333f, 0.0f, 3.106668f);
-    private Vector3 rotationOffset = new Vector3( 180.0f, 0.0f, 0.0f);
-    private Vector3 scaleOffset = new Vector3(2.666667f, 2.666667f, 1.333334f)  ;
-
+    public Transform natureResponsePoint;
+    public float timeElapsed = 15.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -39,13 +37,8 @@ public class NatureSpawn : MonoBehaviour {
     {
         if (natureResponsePrefab)
         {
-            GameObject natureResponse = (GameObject)Instantiate(natureResponsePrefab, transform.position, natureResponsePrefab.transform.rotation);
-            natureResponse.transform.SetParent(transform);
-            natureResponse.transform.localPosition = positionOffset;
-            natureResponse.transform.localEulerAngles = rotationOffset;
-            natureResponse.transform.localScale = scaleOffset;
-
-            Destroy(natureResponse, 15.0f);
+            GameObject natureResponse = (GameObject)Instantiate(natureResponsePrefab, natureResponsePoint.position, natureResponsePoint.rotation);
+            Destroy(natureResponse, timeElapsed);
 
         }
     }

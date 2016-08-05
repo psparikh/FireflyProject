@@ -6,10 +6,12 @@ public class SleeveController : MonoBehaviour
 {
 
     private int bulletIndex;
+    private int currentBulletIndex;
+
     public GameObject[] bulletPrefabs;
     public GameObject[] modelPrefabs;
     public GameObject bulletSpawnPoint;
-    public GameObject bulletPlaceholder;
+    private GameObject bulletPlaceholder;
 
     private GameObject selectedBullet;
 
@@ -31,7 +33,9 @@ public class SleeveController : MonoBehaviour
 
     void Awake()
     {
-        bulletIndex = 0;
+        currentBulletIndex = 0;
+        bulletIndex = currentBulletIndex;
+
         dragging = false;
         returning = false;
 
@@ -101,6 +105,8 @@ public class SleeveController : MonoBehaviour
 
         if (trackedPivotObject != null)
         {
+            pivotDevice = SteamVR_Controller.Input((int)trackedPivotObject.index);
+
             //On Drag
             if (pivotDevice.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
             {
@@ -112,16 +118,19 @@ public class SleeveController : MonoBehaviour
                 transform.GetComponent<Rigidbody>().isKinematic = true;
                 transform.SetParent(col.transform);
 
-                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 
             }
 
             //On Release
             if (pivotDevice.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
             {
+                mainDevice = SteamVR_Controller.Input((int)trackedMainObject.index);
 
                 GetComponent<Rigidbody>().isKinematic = false;
                 transform.SetParent(sleeveParent);
+
+                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
                 returning = true;
 
@@ -139,7 +148,7 @@ public class SleeveController : MonoBehaviour
     public void FireBullet()
     {
         Vector3 forceApplied = bulletForce * (origin.position - transform.position);
-        GameObject newBullet = (GameObject)Instantiate(bulletPrefabs[bulletIndex], bulletSpawnPoint.transform.position, Quaternion.identity);
+        GameObject newBullet = (GameObject)Instantiate(bulletPrefabs[currentBulletIndex], bulletSpawnPoint.transform.position, Quaternion.identity);
         newBullet.GetComponent<Rigidbody>().AddForce(forceApplied);
 
     }
@@ -149,11 +158,12 @@ public class SleeveController : MonoBehaviour
     /// </summary>
     private void ChangeBulletPlaceholder()
     {
-        Destroy(bulletPlaceholder);
-        bulletPlaceholder = (GameObject)Instantiate(modelPrefabs[bulletIndex], transform);
-
-        //bulletPlaceholder.GetComponent<MeshFilter>().mesh = bulletPrefabs[bulletIndex].GetComponentInChildren<MeshFilter>().sharedMesh;
-        //bulletPlaceholder.GetComponent<MeshRenderer>().materials = bulletPrefabs[bulletIndex].GetComponentInChildren<MeshRenderer>().sharedMaterials;
+        if (currentBulletIndex != bulletIndex)
+        {
+            currentBulletIndex = bulletIndex;
+            if (bulletPlaceholder) Destroy(bulletPlaceholder);
+            bulletPlaceholder = (GameObject)Instantiate(modelPrefabs[currentBulletIndex], transform);
+        }
     }
 
 

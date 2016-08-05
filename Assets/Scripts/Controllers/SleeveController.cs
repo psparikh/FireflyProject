@@ -7,6 +7,7 @@ public class SleeveController : MonoBehaviour
 
     private int bulletIndex;
     public GameObject[] bulletPrefabs;
+    public GameObject[] modelPrefabs;
     public GameObject bulletSpawnPoint;
     public GameObject bulletPlaceholder;
 
@@ -65,7 +66,6 @@ public class SleeveController : MonoBehaviour
                 GetComponent<Rigidbody>().velocity *= 0.9f;
 
                 //Vector3 toTarget = origin.position - transform.position;
-
                 if (GetComponent<Rigidbody>().velocity.sqrMagnitude < precision
                     && Vector3.Distance( origin.position, transform.position) < precision)
                 {
@@ -149,8 +149,11 @@ public class SleeveController : MonoBehaviour
     /// </summary>
     private void ChangeBulletPlaceholder()
     {
-        bulletPlaceholder.GetComponent<MeshFilter>().mesh = bulletPrefabs[bulletIndex].GetComponentInChildren<MeshFilter>().sharedMesh;
-        bulletPlaceholder.GetComponent<MeshRenderer>().material = bulletPrefabs[bulletIndex].GetComponentInChildren<MeshRenderer>().sharedMaterial;
+        Destroy(bulletPlaceholder);
+        bulletPlaceholder = (GameObject)Instantiate(modelPrefabs[bulletIndex], transform);
+
+        //bulletPlaceholder.GetComponent<MeshFilter>().mesh = bulletPrefabs[bulletIndex].GetComponentInChildren<MeshFilter>().sharedMesh;
+        //bulletPlaceholder.GetComponent<MeshRenderer>().materials = bulletPrefabs[bulletIndex].GetComponentInChildren<MeshRenderer>().sharedMaterials;
     }
 
 

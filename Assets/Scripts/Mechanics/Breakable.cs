@@ -96,8 +96,7 @@ public class Breakable: MonoBehaviour
         if (!isFragmented)
         {
             yield return StartCoroutine(SplitMesh());
-            GetComponent<Renderer>().enabled = false;
-            GetComponent<Collider>().enabled = false;
+            HideOriginal();
             isFragmented = true;
         }
         yield return null;
@@ -171,7 +170,7 @@ public class Breakable: MonoBehaviour
     private void HideOriginal()
     {
         GetComponent<Renderer>().enabled = false;
-        GetComponent<Collider>().enabled = false;
+        if (GetComponent<Collider>()) GetComponent<Collider>().enabled = false;
     }
 
 

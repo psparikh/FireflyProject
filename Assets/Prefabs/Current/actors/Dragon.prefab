@@ -20,6 +20,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014138999168}
   - 114: {fileID: 114000013499282836}
+  - 114: {fileID: 114000012861299128}
+  - 114: {fileID: 114000010446674192}
+  - 114: {fileID: 114000013953684260}
   m_Layer: 0
   m_Name: Dragon
   m_TagString: Untagged
@@ -77,6 +80,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000013651683438
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000010985106470}
+  m_Layer: 0
+  m_Name: dropPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000010985106470
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013651683438}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2.5, z: -6.71}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000014138999168}
+  m_RootOrder: 1
 --- !u!4 &4000011378506642
 Transform:
   m_ObjectHideFlags: 1
@@ -130,6 +161,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000012498772618}
+  - {fileID: 4000010985106470}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!23 &23000010848600516
@@ -183,6 +215,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &114000010446674192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010126897102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2876dbef81e03f418dc0840b4b4666b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000011707650612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -195,13 +238,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: 0}
-  radius: 4.84
-  power: 300
-  upwardsModifier: 400
+  radius: 11.82
+  power: 100
+  upwardsModifier: 200
   shatterPercentage: 0
   fragmentOnStart: 0
   addColliders: 0
+  useGravity: 1
   dissolve: 0
+--- !u!114 &114000012861299128
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010126897102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ce6a85187d1e0b4086a30cb99894eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spanSize: 15
+  numDrops: 4
+  dropRate: 0.2
+  dropPoint: {fileID: 4000010985106470}
+  spawnPrefabs:
+  - {fileID: 1000010990803688, guid: b901f1be85f70a14db6f6e4f10877ffa, type: 2}
+  spanSizeRange: 20
+  numDropsRange: 3
+  dropRateRange: 0.05
+  doDrop: 1
 --- !u!114 &114000013499282836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -215,30 +280,101 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathContainer: {fileID: 0}
   onStart: 1
-  moveToPath: 1
+  moveToPath: 0
   reverse: 0
   startPoint: 0
   currentPoint: 0
-  closeLoop: 1
+  closeLoop: 0
   local: 0
   lookAhead: 0
   sizeToAdd: 0
   timeValue: 1
-  speed: 5
+  speed: 15
   animEaseType:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  loopType: 1
+  loopType: 0
   waypoints: []
-  events: []
+  events:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114000012861299128}
+        m_MethodName: SetDrop
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 114000011707650612}
+        m_MethodName: SetDissolve
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   pathType: 1
   pathMode: 1
   easeType: 1
   lockPosition: 0
   lockRotation: 0
+--- !u!114 &114000013953684260
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010126897102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43ce5a1de2d0b61439ec8e3a08d3626a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 114000013499282836}
+  pause: 0
 --- !u!136 &136000012465628618
 CapsuleCollider:
   m_ObjectHideFlags: 1

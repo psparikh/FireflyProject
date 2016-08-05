@@ -19,6 +19,7 @@ public class Breakable: MonoBehaviour
 
     public bool fragmentOnStart = false;
     public bool addColliders = true;
+    public bool useGravity = true;
     private bool isFragmented;
 
 #if UNITY_EDITOR
@@ -67,7 +68,7 @@ public class Breakable: MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.white;
+        Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position + offset, radius);
     }
 
@@ -199,7 +200,7 @@ public class Breakable: MonoBehaviour
                 {
                     rb.transform.SetParent(null);
 
-                    rb.useGravity = true;
+                    rb.useGravity = useGravity;
                     rb.isKinematic = false;
 
                     Vector3 sourcePos = transform.position + offset;
@@ -252,6 +253,15 @@ public class Breakable: MonoBehaviour
             materials = GetComponent<SkinnedMeshRenderer>().materials;
         }
         currentMaterial = materials;
+    }
+
+    /// <summary>
+    /// Set Dissolve value
+    /// </summary>
+    /// <param name="val"></param>
+    public void SetDissolve( bool val)
+    {
+        dissolve = val;
     }
 
 

@@ -10,7 +10,7 @@ public class HumanoidController : MonoBehaviour {
         Respond
     }
 
-    private ActorState currentActorState = ActorState.Idle;
+    public ActorState currentActorState = ActorState.Idle;
 
     public Transform headRef;
     public Transform bodyRef;
